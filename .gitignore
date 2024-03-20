@@ -1,4 +1,7 @@
 build/
 install/
 log/
+
+web/node_modules/
+
 .vscode/
