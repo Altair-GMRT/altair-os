@@ -4,5 +4,6 @@ services:
     container_name: altair-os
     volumes:
       - ./src:/altair-os/src
+      - ./web:/altair-os/web
     ports:
       - "3000:3000"
