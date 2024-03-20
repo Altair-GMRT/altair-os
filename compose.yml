@@ -2,7 +2,7 @@ services:
   altair-rcl:
     image: altair-os
     container_name: altair-os
-    ports:
-      - '3000:3000'
     volumes:
       - ./src:/altair-os/src
+    ports:
+      - "3000:3000"
