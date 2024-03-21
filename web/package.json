@@ -2,11 +2,10 @@
   "name": "altair-app",
   "version": "1.0.0",
   "description": "Web application for interfacing altair-os",
-  "main": "index.js",
+  "main": "./app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx tailwindcss -i ./src/css/input.css -o ./public/css/output.css --watch",
-    "kill": "sudo kill -9 `sudo lsof -t -i:3000`"
+    "dev": "npx tailwindcss -i ./src/css/input.css -o ./public/css/output.css --watch"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +16,8 @@
   "dependencies": {
     "ejs": "^3.1.9",
     "express": "^4.18.3",
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "kill-port": "^2.0.1",
+    "rclnodejs": "^0.26.1"
   }
 }
