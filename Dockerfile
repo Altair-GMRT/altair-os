@@ -61,7 +61,10 @@ RUN apt-get update && \
 RUN apt-get update && \
     apt-get install -y pip && \
     pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir numpy pyyaml && \
+    pip install --no-cache-dir \ 
+    numpy \
+    pyyaml \ 
+    && \
     apt-get remove -y pip
 
 COPY ./altair_setup.py ./altair-os/altair_setup.py
