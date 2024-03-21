@@ -1,7 +1,9 @@
 services:
-  altair-rcl:
+  altair-os:
     image: altair-os
     container_name: altair-os
+    # devices:
+    #   - /dev/ttyUSB0:/dev/ttyUSB0
     volumes:
       - ./src:/altair-os/src
       - ./web:/altair-os/web
