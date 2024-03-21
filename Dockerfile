@@ -41,12 +41,14 @@ RUN rosdep init && \
     rosdep update --rosdistro humble
 
 # ------------[ DYNAMIXEL SDK INSTALLATION ]------------
-RUN apt-get update && \
-    apt-get install -y git && \
-    git clone https://github.com/ROBOTIS-GIT/DynamixelSDK.git
+RUN git clone https://github.com/ROBOTIS-GIT/DynamixelSDK.git
+
 WORKDIR /DynamixelSDK/python/
+
 RUN python3 setup.py install
+
 WORKDIR /
+
 RUN rm -rf /DynamixelSDK && \
     apt-get remove -y git
 
@@ -54,6 +56,15 @@ RUN rm -rf /DynamixelSDK && \
 RUN apt-get update && \
     apt-get install -y npm && \
     npm install -g node@20.11.1
+
+# ------------[ PYTHON LIBRARIES ]------------
+RUN apt-get update && \
+    apt-get install -y pip && \
+    pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir numpy pyyaml && \
+    apt-get remove -y pip
+
+COPY ./altair_setup.py ./altair-os/altair_setup.py
 
 # ------------[ BASH SETUP ]------------
 RUN echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc
