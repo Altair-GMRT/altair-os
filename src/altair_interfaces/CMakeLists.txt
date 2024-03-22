@@ -9,7 +9,9 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 
 
 find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
+find_package(altair_data)
 
 
 rosidl_generate_interfaces(${PROJECT_NAME}
@@ -23,6 +25,20 @@ ament_export_dependencies(rosidl_default_runtime)
 rosidl_get_typesupport_target(cpp_typesupport_target
   ${PROJECT_NAME} 
   rosidl_typesupport_cpp
+)
+
+
+add_executable(app_launcher
+  src/app_launcher.cpp
+  src/altair_interfaces/app_launcher_node.cpp
+)
+ament_target_dependencies(app_launcher
+  rclcpp
+  altair_data
+)
+install(TARGETS
+  app_launcher
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 
