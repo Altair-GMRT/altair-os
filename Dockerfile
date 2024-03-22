@@ -54,7 +54,7 @@ RUN rm -rf /DynamixelSDK && \
 
 # ------------[ NODEJS INSTALLATION ]------------
 RUN apt-get update && \
-    apt-get install -y npm && \
+    apt-get install -y npm lsof && \
     npm install -g node@20.11.1
 
 # ------------[ PYTHON LIBRARIES ]------------
@@ -70,9 +70,9 @@ RUN apt-get update && \
 COPY ./altair_setup.py ./altair-os/altair_setup.py
 
 # ------------[ BASH SETUP ]------------
-RUN echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc
-RUN echo '#!/usr/bin/env bash' > /rcl_entrypoint.sh
-RUN echo 'source /opt/ros/humble/setup.bash' >> /rcl_entrypoint.sh
+RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+RUN echo "#!/usr/bin/env bash" > /rcl_entrypoint.sh
+RUN echo "source /opt/ros/humble/setup.bash" >> /rcl_entrypoint.sh
 RUN echo 'exec "$@"' >> /rcl_entrypoint.sh
 RUN chmod +x /rcl_entrypoint.sh
 
