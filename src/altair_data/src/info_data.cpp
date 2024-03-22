@@ -4,9 +4,9 @@
 
 altair::InfoData::InfoData() {
     
-    this->core_config   = YAML::LoadFile("/altair-os/src/adisha_data/config/core_config.yaml");
-    this->robot_config  = YAML::LoadFile("/altair-os/src/adisha_data/config/robot_config.yaml");
-    this->joint_config  = YAML::LoadFile("/altair-os/src/adisha_data/config/joint_config.yaml");
+    this->core_config   = YAML::LoadFile("/altair-os/src/altair_data/config/core_config.yaml");
+    this->robot_config  = YAML::LoadFile("/altair-os/src/altair_data/config/robot_config.yaml");
+    this->joint_config  = YAML::LoadFile("/altair-os/src/altair_data/config/joint_config.yaml");
 
     this->altair_os_path            = this->core_config["os_path"].as<std::string>();
     this->altair_controllers_path   = this->core_config["altair_controllers_path"].as<std::string>();
