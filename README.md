@@ -57,6 +57,9 @@ npm install
 npx generate-ros-messages
 ```
 
+> [!IMPORTANT]
+> Use the same node version (20.11.1).
+
 ## 3. Launches
 Remember to source the workspace's bash file everytime we open a new terminal with:
 
