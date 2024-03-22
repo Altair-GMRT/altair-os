@@ -1,7 +1,9 @@
 # **altair-os**
 A ROS2-based framework for Altair Team of GMRT robot development.
 
-## **1. Installation and Basic Usage**
+
+
+## **1. Installation**
 We use Docker to develop the robot since Raspberry Pi 5 does not support Ubuntu 22.04, resulting in no ROS2 distro available for our current operating system. Note that we can directly ```colcon build``` this repository if we are working on a machine that matches the requirements for ROS2 Humble. Or else, do the following steps to begin working with this repository:
 
 ### **1.1 Initialization**
@@ -28,7 +30,7 @@ sudo docker compose up -d
 ```
 
 
-## 2. Basic Usage
+## **2. Basic Usage**
 
 ### **2.1 Developing and Building**
 Please note that the container ```altair-os``` volume-bind the ```src/``` and ```web/``` directory. Therefore, we might develop the source codes on our local or host machine and build the project on the Docker container. Use the following command to access the Docker container interactively on our terminal:
@@ -60,11 +62,15 @@ npx generate-ros-messages
 > [!IMPORTANT]
 > Use the same node version (20.11.1).
 
-## 3. Launches
+### **2.2 Launches**
 Remember to source the workspace's bash file everytime we open a new terminal with:
 
 ```
 source install/setup.bash
 ```
 
-All launch files are contained inside ```altair_main``` package.
+All launch files are contained inside ```altair_main``` package. Go to ```src/altair_main/launch/``` to see all the available launch files. Proceed with the following comment to run the launch file:
+
+```
+ros2 launch altair_main <launch_file_name.py>
+```
