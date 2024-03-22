@@ -1,5 +1,4 @@
 import os
-import subprocess
 import socket
 import yaml
 
@@ -14,8 +13,8 @@ ALTAIR_VISION_PATH      = os.path.join(OS_PATH, 'src/altair_vision')
 ALTAIR_MAIN_PATH        = os.path.join(OS_PATH, 'src/altair_main')
 
 HOST_OS_PATH            = os.getcwd()
-HOST_CORE_CONFIG_PATH   = os.path.join(HOST_OS_PATH, 'src/altair_data/core_config.yaml')
-HOST_ROBOT_CONFIG_PATH  = os.path.join(HOST_OS_PATH, 'src/altair_data/robot_config.yaml')
+HOST_CORE_CONFIG_PATH   = os.path.join(HOST_OS_PATH, 'src/altair_data/config/core_config.yaml')
+HOST_ROBOT_CONFIG_PATH  = os.path.join(HOST_OS_PATH, 'src/altair_data/config/robot_config.yaml')
 
 
 
