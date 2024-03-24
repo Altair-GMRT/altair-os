@@ -11,6 +11,8 @@ ALTAIR_DATA_PATH        = os.path.join(OS_PATH, 'src/altair_data')
 ALTAIR_MOTION_PATH      = os.path.join(OS_PATH, 'src/altair_motion')
 ALTAIR_VISION_PATH      = os.path.join(OS_PATH, 'src/altair_vision')
 ALTAIR_MAIN_PATH        = os.path.join(OS_PATH, 'src/altair_main')
+ALTAIR_PY_TESTS_PATH    = os.path.join(OS_PATH, 'src/altair_py_tests')
+ALTAIR_CPP_TESTS_PATH   = os.path.join(OS_PATH, 'src/altair_cpp_tests')
 
 HOST_OS_PATH            = os.getcwd()
 HOST_CORE_CONFIG_PATH   = os.path.join(HOST_OS_PATH, 'src/altair_data/config/core_config.yaml')
@@ -57,7 +59,9 @@ def main(args=None) -> None:
         'altair_data_path': ALTAIR_DATA_PATH,
         'altair_motion_path': ALTAIR_MOTION_PATH,
         'altair_vision_path': ALTAIR_VISION_PATH,
-        'altair_main_path': ALTAIR_MAIN_PATH
+        'altair_main_path': ALTAIR_MAIN_PATH,
+        'altair_py_tests_path': ALTAIR_PY_TESTS_PATH,
+        'altair_cpp_tests_path': ALTAIR_CPP_TESTS_PATH
     }
     with open(HOST_CORE_CONFIG_PATH, 'w') as file:
         yaml.dump(core_config_yaml, file)
