@@ -2,7 +2,7 @@
 
 
 
-altair::RclNodeTestNode::RclNodeTestNode() : rclcpp::Node("RclNodeTestNode"){
+altair::RclNodeTestNode::RclNodeTestNode() : rclcpp::Node("RclNodeTestNode") {
     this->declare_parameter("pub_msg", rclcpp::PARAMETER_STRING);
     this->declare_parameter("pub_topic", rclcpp::PARAMETER_STRING);
     this->declare_parameter("sub_topic", rclcpp::PARAMETER_STRING);
