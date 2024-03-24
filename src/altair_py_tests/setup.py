@@ -24,7 +24,6 @@ setup(
     entry_points        = {
         'console_scripts': [
             'rclnode_test = altair_py_tests.rclnode_test:main',
-            'dxl_test = altair_py_tests.dxl_test:main',
             'custom_msg_test = altair_py_tests.custom_msg_test:main'
         ],
     },
