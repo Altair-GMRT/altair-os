@@ -4,7 +4,7 @@ package_name = 'altair_controllers'
 package_list = [
     package_name,
     package_name + '/modules',
-    package_name + '/modules/dxl_type'
+    package_name + '/modules/dxl_lib'
 ]
 
 setup(
