@@ -3,7 +3,7 @@
 
 #include <cstdlib>
 #include "rclcpp/rclcpp.hpp"
-#include "altair_data/info_data.hpp"
+#include "altair_data/config.hpp"
 
 namespace altair {
 
