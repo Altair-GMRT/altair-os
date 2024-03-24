@@ -4,6 +4,7 @@ from setuptools import setup
 
 package_name = 'altair_main'
 package_list = [
+    package_name
 ]
 
 setup(
