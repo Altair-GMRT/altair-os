@@ -67,8 +67,6 @@ RUN apt-get update && \
     && \
     apt-get remove -y pip
 
-COPY ./altair_setup.py ./altair-os/altair_setup.py
-
 # ------------[ BASH SETUP ]------------
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 RUN echo "#!/usr/bin/env bash" > /rcl_entrypoint.sh
