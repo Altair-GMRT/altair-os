@@ -43,7 +43,7 @@ RUN rosdep init && \
 # ------------[ DYNAMIXEL SDK INSTALLATION ]------------
 RUN git clone https://github.com/ROBOTIS-GIT/DynamixelSDK.git
 
-WORKDIR /DynamixelSDK/python/
+WORKDIR /DynamixelSDK/python
 
 RUN python3 setup.py install
 
