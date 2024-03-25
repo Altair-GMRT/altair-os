@@ -4,7 +4,7 @@ package_name = 'altair_controllers'
 package_list = [
     package_name,
     package_name + '/modules',
-    package_name + '/modules/dxl_lib'
+    package_name + '/modules/dxl_type'
 ]
 
 setup(
@@ -24,6 +24,7 @@ setup(
     tests_require       = ['pytest'],
     entry_points        = {
         'console_scripts': [
+            'app_controller = altair_controllers.app_controller:main'
         ],
     },
 )
