@@ -68,7 +68,9 @@ def main(args=None) -> None:
 
     robot_config_yaml = {
         'id': id,
-        'ip': ip
+        'ip': ip,
+        'u2d2_port': '/dev/ttyUSB0',
+        'baudrate': 1000000
     }
     with open(HOST_ROBOT_CONFIG_PATH, 'w') as file:
         yaml.dump(robot_config_yaml, file)
