@@ -1,7 +1,9 @@
 altair_controllers_path: /altair-os/src/altair_controllers
+altair_cpp_tests_path: /altair-os/src/altair_cpp_tests
 altair_data_path: /altair-os/src/altair_data
 altair_interfaces_path: /altair-os/src/altair_interfaces
 altair_main_path: /altair-os/src/altair_main
 altair_motion_path: /altair-os/src/altair_motion
+altair_py_tests_path: /altair-os/src/altair_py_tests
 altair_vision_path: /altair-os/src/altair_vision
 os_path: /altair-os

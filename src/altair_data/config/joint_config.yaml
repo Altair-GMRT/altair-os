@@ -1,0 +1,11 @@
+dxl_num: 20
+dxl_id:
+- 1
+- 2
+- 3
+dxl_type:
+- MX28
+- MX64
+joint_name:
+- head
+- l_hip_yaw
