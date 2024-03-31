@@ -8,16 +8,40 @@ const port      = 3000
 const rclnode   = new rclga()
 
 app.set('view engine', 'ejs')
-app.set('views', path.join(__dirname, '/views'))
+app.set('views', path.join(__dirname, './views'))
 app.use(express.static(path.join(__dirname, './public')))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 
 
-app.get('/', (req, res) => {
+app.get(`/${config.robot_config.id}`, (req, res) => {
     res.render('pages/index', {
         page_name: 'Welcome',
+        robot_config: config.robot_config,
+        joint_config: config.joint_config
+    })
+})
+
+app.get(`/${config.robot_config.id}/status`, (req, res) => {
+    res.render('pages/status', {
+        page_name: 'Status',
+        robot_config: config.robot_config,
+        joint_config: config.joint_config
+    })
+})
+
+app.get(`/${config.robot_config.id}/pose_studio`, (req, res) => {
+    res.render('pages/pose_studio', {
+        page_name: 'Pose Studio',
+        robot_config: config.robot_config,
+        joint_config: config.joint_config
+    })
+})
+
+app.get(`/${config.robot_config.id}/motion_sequencer`, (req, res) => {
+    res.render('pages/motion_sequencer', {
+        page_name: 'Motion Sequencer',
         robot_config: config.robot_config,
         joint_config: config.joint_config
     })
