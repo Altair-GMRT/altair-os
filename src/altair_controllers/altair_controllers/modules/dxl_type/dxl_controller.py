@@ -1,6 +1,6 @@
 import dynamixel_sdk as dxl
 from dxl_table import *
-from dxl_err import *
+
 
 
 class DXLController:
@@ -107,7 +107,7 @@ class DXLController:
 
 
 
-    def groupSyncRead(self, address:int, size:int, dxl_id:list) -> list | int:
+    def groupSyncRead(self, address:int, size:int, dxl_id:list, error_bypass:bool=False) -> list | int:
         data_res = []
 
         group_sync_read = dxl.GroupSyncRead(
@@ -129,13 +129,82 @@ class DXLController:
             dxl_res = group_sync_read.isAvailable(id, address, size)
             
             if dxl_res != True:
-                return DXL_DATA_UNAVAILABLE
+
+                if not error_bypass:
+                    return DXL_DATA_UNAVAILABLE
+                
+                else:
+                    data_res.append(None)
             
             else:
                 data_res.append(group_sync_read.getData(id, address, size))
         
         return data_res
 
+
+
+    def groupBulkWrite(self, address:list, size:list, dxl_id:list, params:list) -> int:
+        param_num = len(dxl_id)
+
+        group_bulk_write = dxl.GroupBulkWrite(
+            self.porthandler,
+            self.packethandler
+        )
+
+        for i in range(param_num):
+            group_bulk_write.addParam(
+                dxl_id[i],
+                address[i],
+                size[i],
+                params[i]
+            )
+
+        dxl_comm_res = group_bulk_write.txPacket()
+
+        if dxl_comm_res != dxl.COMM_SUCCESS:
+            return DXL_COMM_ERROR
+        
+        group_bulk_write.clearParam()
+
+
+
+    def groupBulkRead(self, address:list, size:list, dxl_id:list, error_bypass:bool=False) -> list | int:
+        param_num   = len(dxl_id)
+        data_res    = []
+
+        group_bulk_read = dxl.GroupBulkRead(
+            self.porthandler,
+            self.packethandler
+        )
+
+        for i in range(param_num):
+            group_bulk_read.addParam(
+                dxl_id[i],
+                address[i],
+                size[i]
+            )
+
+        dxl_comm_res = group_bulk_read.txRxPacket()
+
+        if dxl_comm_res != dxl.COMM_SUCCESS:
+            return DXL_COMM_ERROR
+        
+        for i in range(param_num):
+            dxl_res = group_bulk_read.isAvailable(dxl_id[i], address[i], size[i])
+            
+            if dxl_res != True:
+
+                if not error_bypass:
+                    return DXL_DATA_UNAVAILABLE
+                
+                else:
+                    data_res.append(None)
+
+            else:
+                data_res.append(group_bulk_read.getData(dxl_id[i], address[i], size[i]))
+
+        return data_res
+            
 
 
     def convert1ByteToDxl(self, data:int) -> list:

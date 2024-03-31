@@ -24,6 +24,7 @@ setup(
     tests_require       = ['pytest'],
     entry_points        = {
         'console_scripts': [
+            '_dummy_app_controller = altair_controllers._dummy_app_controller:main',
             'app_controller = altair_controllers.app_controller:main'
         ],
     },
