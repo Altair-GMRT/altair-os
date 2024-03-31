@@ -48,7 +48,6 @@ In the container's bash terminal, run the following:
 
 ```console
 # On Docker container
-cd altair-os/
 colcon build
 ```
 
