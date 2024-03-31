@@ -4,7 +4,12 @@ from launch import LaunchDescription
 from launch_ros.actions import Node
 
 
-with open(os.path.join(os.getcwd(), 'src/altair_data/config/robot_config.yaml'), 'r') as file:
+CORE_CONFIG_PATH    = os.path.join(os.getcwd(), 'src/altair_data/config/core_config.yaml')
+JOINT_CONFIG_PATH   = os.path.join(os.getcwd(), 'src/altair_data/config/joint_config.yaml')
+ROBOT_CONFIG_PATH   = os.path.join(os.getcwd(), 'src/altair_data/config/robot_config.yaml')
+
+
+with open(ROBOT_CONFIG_PATH, 'r') as file:
     ROBOT_CONFIG    = yaml.safe_load(file)
     ROBOT_ID        = ROBOT_CONFIG['id']
 

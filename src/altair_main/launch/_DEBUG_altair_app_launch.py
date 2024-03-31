@@ -29,8 +29,8 @@ def generate_launch_description():
     
     app_controller_node = Node(
         package     = 'altair_controllers',
-        executable  = 'app_controller',
-        name        = f'{ROBOT_ID}_app_controller',
+        executable  = '_dummy_app_controller',
+        name        = f'{ROBOT_ID}_dummy_app_controller',
         parameters  = [
             {'id': ROBOT_ID},
             {'dxl_baudrate': DXL_BAUDRATE},
