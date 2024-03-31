@@ -1,4 +1,2 @@
-baudrate: 1000000
 id: altair
 ip: 172.17.81.180
-u2d2_port: /dev/ttyUSB0

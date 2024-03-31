@@ -1,8 +1,27 @@
+dxl_baudrate: 1000000
+dxl_u2d2_port: /dev/ttyUSB0
 dxl_num: 20
 dxl_id:
 - 1
 - 2
 - 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+- 13
+- 14 
+- 15
+- 16
+- 17
+- 18
+- 19
+- 20
 dxl_type:
 - MX28
 - MX64
