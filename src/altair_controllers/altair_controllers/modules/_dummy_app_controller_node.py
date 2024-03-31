@@ -121,7 +121,7 @@ class DummyAppControllerNode(Node):
 
         present_position_msg    = altair_interfaces.JointPosition()
         present_velocity_msg    = altair_interfaces.JointVelocity()
-        present_torque_msg      = altair_interfaces.JointLoad()
+        present_torque_msg      = altair_interfaces.JointTorque()
         joint_sensor_msg        = altair_interfaces.JointSensor()
 
         present_position_msg.val    = self.present_position[:]
