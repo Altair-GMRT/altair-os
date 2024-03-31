@@ -19,7 +19,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/JointTorque.msg"
   "msg/JointPosition.msg"
   "msg/JointVelocity.msg"
-  "msg/JointLoad.msg"
+  "msg/JointSensor.msg"
 )
 ament_export_dependencies(rosidl_default_runtime)
 rosidl_get_typesupport_target(cpp_typesupport_target
