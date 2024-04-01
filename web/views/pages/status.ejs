@@ -4,10 +4,17 @@
 <head>
     <%- include('../partials/head') %>
     <script src="/js/navbar_utils.js"></script>
+    <script src="/js/status/button_utils.js"></script>
+    <script src="/js/status/table_update.js"></script>
+    <script src="/js/status/onload.js"></script>
 </head>
 
-<body class="bg-gray-950">
+<body class="bg-gray-950 overflow-y-hidden" onload="onload_update()">
     <%- include('../partials/navbar') %>
+    <div class="flex flex-row">
+        <%- include('../partials/status/table') %>
+        <%- include('../partials/status/button') %>
+    </div>
 </body>
 
 </html>
