@@ -14,7 +14,7 @@ This process is used for 3 things: creating a unique ID or namespace for our mac
 python3 altair_setup.py
 ```
 
-We will be asked for an ID/namespace to be given to the machine.
+We will be asked for an ID/namespace and a frequency to be given to the machine.
 
 ### **1.2 Build the Images** 
 Run the following commands to build the Docker image required:
