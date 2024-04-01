@@ -13,6 +13,7 @@ ROBOT_CONFIG_PATH   = os.path.join(os.getcwd(), 'src/altair_data/config/robot_co
 with open(ROBOT_CONFIG_PATH, 'r') as file:
     ROBOT_CONFIG    = yaml.safe_load(file)
     ROBOT_ID        = ROBOT_CONFIG['id']
+    MASTER_CLOCK    = ROBOT_CONFIG['master_clock']
 
 
 with open(JOINT_CONFIG_PATH, 'r') as file:
@@ -39,7 +40,7 @@ def generate_launch_description():
             {'dxl_id': DXL_ID},
             {'dxl_type': DXL_TYPE},
             {'joint_name': JOINT_NAME},
-            {'publish_period': 1./30.}
+            {'master_clock': MASTER_CLOCK}
         ]
     )
 
