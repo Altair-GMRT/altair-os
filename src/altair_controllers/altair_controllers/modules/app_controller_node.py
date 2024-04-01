@@ -16,7 +16,7 @@ class AppControllerNode(Node):
         self.declare_parameter('dxl_id', rclpy.Parameter.Type.INTEGER_ARRAY)
         self.declare_parameter('dxl_type', rclpy.Parameter.Type.STRING_ARRAY)
         self.declare_parameter('joint_name', rclpy.Parameter.Type.STRING_ARRAY)
-        self.declare_parameter('publish_period', rclpy.Parameter.Type.DOUBLE)
+        self.declare_parameter('master_clock', rclpy.Parameter.Type.DOUBLE)
 
         self.ID             = self.get_parameter('id').value
         self.DXL_BAUDRATE   = self.get_parameter('dxl_baudrate').value
@@ -25,7 +25,7 @@ class AppControllerNode(Node):
         self.DXL_ID         = self.get_parameter('dxl_id').value
         self.DXL_TYPE       = self.get_parameter('dxl_type').value
         self.JOINT_NAME     = self.get_parameter('joint_name').value
-        self.PUBLISH_PERIOD = self.get_parameter('publish_period').value
+        self.MASTER_CLOCK   = self.get_parameter('master_clock').value
         
         self.mx28_id    = []
         self.mx28_name  = dict(())
@@ -103,7 +103,7 @@ class AppControllerNode(Node):
         )
 
         self.pub_timer = self.create_timer(
-            self.PUBLISH_PERIOD,
+            self.MASTER_CLOCK,
             self.pubTimerCallback
         )
 

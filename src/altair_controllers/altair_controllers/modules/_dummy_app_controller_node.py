@@ -16,7 +16,7 @@ class DummyAppControllerNode(Node):
         self.declare_parameter('dxl_id', rclpy.Parameter.Type.INTEGER_ARRAY)
         self.declare_parameter('dxl_type', rclpy.Parameter.Type.STRING_ARRAY)
         self.declare_parameter('joint_name', rclpy.Parameter.Type.STRING_ARRAY)
-        self.declare_parameter('publish_period', rclpy.Parameter.Type.DOUBLE)
+        self.declare_parameter('master_clock', rclpy.Parameter.Type.DOUBLE)
 
         self.ID             = self.get_parameter('id').value
         self.DXL_BAUDRATE   = self.get_parameter('dxl_baudrate').value
@@ -25,11 +25,18 @@ class DummyAppControllerNode(Node):
         self.DXL_ID         = self.get_parameter('dxl_id').value
         self.DXL_TYPE       = self.get_parameter('dxl_type').value
         self.JOINT_NAME     = self.get_parameter('joint_name').value
-        self.PUBLISH_PERIOD = self.get_parameter('publish_period').value
+        self.MASTER_CLOCK   = self.get_parameter('master_clock').value
 
         self.present_position   = [0 for __ in range(self.DXL_NUM)]
         self.present_velocity   = [0 for __ in range(self.DXL_NUM)]
         self.present_torque     = [0 for __ in range(self.DXL_NUM)] 
+
+        self.goal_torque_sub = self.create_subscription(
+            msg_type    = altair_interfaces.JointTorque,
+            topic       = f'{self.ID}/goal_torque',
+            callback    = self.goalTorqueSubCallback,
+            qos_profile = 1000
+        )
 
         self.goal_position_sub = self.create_subscription(
             msg_type    = altair_interfaces.JointPosition,
@@ -45,16 +52,15 @@ class DummyAppControllerNode(Node):
             qos_profile = 1000
         )
 
-        self.goal_torque_sub = self.create_subscription(
-            msg_type    = altair_interfaces.JointTorque,
-            topic       = f'{self.ID}/goal_torque',
-            callback    = self.goalTorqueSubCallback,
-            qos_profile = 1000
-        )
-
         self.joint_sensor_pub = self.create_publisher(
             msg_type    = altair_interfaces.JointSensor,
             topic       = f'{self.ID}/joint_sensor',
+            qos_profile = 10
+        )
+
+        self.present_torque_pub = self.create_publisher(
+            msg_type    = altair_interfaces.JointTorque,
+            topic       = f'{self.ID}/present_torque',
             qos_profile = 10
         )
 
@@ -70,14 +76,8 @@ class DummyAppControllerNode(Node):
             qos_profile = 10
         )
 
-        self.present_torque_pub = self.create_publisher(
-            msg_type    = altair_interfaces.JointTorque,
-            topic       = f'{self.ID}/present_torque',
-            qos_profile = 10
-        )
-
         self.pub_timer = self.create_timer(
-            self.PUBLISH_PERIOD,
+            self.MASTER_CLOCK,
             self.pubTimerCallback
         )
 
