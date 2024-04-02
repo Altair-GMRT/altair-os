@@ -35,21 +35,21 @@ class DummyAppControllerNode(Node):
             msg_type    = altair_interfaces.JointTorque,
             topic       = f'{self.ID}/goal_torque',
             callback    = self.goalTorqueSubCallback,
-            qos_profile = 1000
+            qos_profile = 10
         )
 
         self.goal_position_sub = self.create_subscription(
             msg_type    = altair_interfaces.JointPosition,
             topic       = f'{self.ID}/goal_position',
             callback    = self.goalPositionSubCallback,
-            qos_profile = 1000
+            qos_profile = 10
         )
 
         self.goal_velocity_sub = self.create_subscription(
             msg_type    = altair_interfaces.JointVelocity,
             topic       = f'{self.ID}/goal_velocity',
             callback    = self.goalVelocitySubCallback,
-            qos_profile = 1000
+            qos_profile = 10
         )
 
         self.joint_sensor_pub = self.create_publisher(
@@ -84,32 +84,26 @@ class DummyAppControllerNode(Node):
 
     
     def goalPositionSubCallback(self, msg:altair_interfaces.JointPosition) -> None:
-        msg_val = ''
-        for val in msg.val:
-            msg_val += f'{val}, '
+        for i in range(self.DXL_NUM):
+            self.present_position[i] = msg.val[i]
 
-        self.get_logger().info(f'[{self.ID}/goal_position]: {msg_val[:-2]}')
+        self.get_logger().info(f'[{self.ID}/goal_position]: position received')
 
 
 
     def goalVelocitySubCallback(self, msg:altair_interfaces.JointVelocity) -> None:
-        msg_val = ''
-        for val in msg.val:
-            msg_val += f'{val}, '
+        for i in range(self.DXL_NUM):
+            self.present_velocity[i] = msg.val[i]
 
-        self.get_logger().info(f'[{self.ID}/goal_velocity]: {msg_val[:-2]}')
+        self.get_logger().info(f'[{self.ID}/goal_velocity]: velocity received')
 
 
 
     def goalTorqueSubCallback(self, msg:altair_interfaces.JointTorque) -> None:
-        msg_val = ''
-        for val in msg.val:
-            msg_val += f'{val}, '
-
         for i in range(self.DXL_NUM):
             self.present_torque[i] = msg.val[i]
 
-        self.get_logger().info(f'[{self.ID}/goal_torque]: {msg_val[:-2]}')
+        self.get_logger().info(f'[{self.ID}/goal_torque]: torque received')
 
 
 

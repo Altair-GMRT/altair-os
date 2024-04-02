@@ -14,6 +14,30 @@ function status_table_update() {
         .catch(error => {
             console.error('Error fetching data: ', error)
         })
+
+    if(!document.getElementById('play_pose_button').disabled) {
+        var goal_pos = []
+        
+        for(let i = 0; i < ALTAIR_DXL_NUM; i++) {
+            let val = parseInt(document.getElementById(`tpos_${ALTAIR_DXL_ID[i]}`).value, 10)
+            goal_pos.push(val)
+        }
+
+        fetch(`${ALTAIR_URL}/api/set_position`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                goal_position: goal_pos
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message);
+            })
+            .catch(error => {
+                console.error('Error: ', error);
+            });
+    }
 }
 
 setInterval(status_table_update, ALTAIR_MASTER_CLOCK_MS)

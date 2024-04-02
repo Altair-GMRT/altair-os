@@ -3,9 +3,9 @@ function save_pose() {
     var pres_pos    = []
 
     for(let i = 0; i < ALTAIR_DXL_NUM; i++) {
-        pres_pos.push(
-            parseInt(document.getElementById(`pos_${ALTAIR_DXL_ID[i]}`).innerHTML, 10)
-        )
+        let val = parseInt(document.getElementById(`pos_${ALTAIR_DXL_ID[i]}`).innerHTML, 10)
+        pres_pos.push(val)
+        document.getElementById(`spos_${ALTAIR_DXL_ID[i]}`).innerHTML = val
     }
 
     fetch(`${ALTAIR_URL}/api/save_pose`, {
@@ -21,7 +21,7 @@ function save_pose() {
             console.log(data.message);
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error('Error: ', error);
         });
 
     

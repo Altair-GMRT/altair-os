@@ -78,7 +78,22 @@ app.post(`/${config.robot_config.id}/api/save_pose`, (req, res) => {
 
 app.get(`/${config.robot_config.id}/api/get_saved_pose`, (req, res) => {
     res.status(200)
-    res.json({poses: rclnode.getSavedPose()})
+    res.json(rclnode.getSavedPose())
+})
+
+app.post(`/${config.robot_config.id}/api/get_pose_value`, (req, res) => {
+    const json_data = req.body
+    
+    res.status(200)
+    res.json(rclnode.getPoseValue(json_data.filename))
+})
+
+app.post(`/${config.robot_config.id}/api/set_position`, (req, res) => {
+    const json_data = req.body
+    rclnode.setPosition(json_data.goal_position)
+
+    res.status(200)
+    res.json({message: 'Position set'})
 })
 
 

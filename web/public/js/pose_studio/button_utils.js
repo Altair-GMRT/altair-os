@@ -1,47 +1,69 @@
+function on_click_pose(fname) {
+    fetch(`${ALTAIR_URL}/api/get_pose_value`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            filename: fname
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            for(let i = 0; i < ALTAIR_DXL_NUM; i++) {
+                document.getElementById(`spos_${ALTAIR_DXL_ID[i]}`).innerHTML = data.val[i]
+            }
+        })
+        .catch(error => {
+            console.error('Error: ', error);
+        });
+
+    document.getElementById('pose_select_overlay').classList.add('hidden')
+    document.getElementById('pose_select').classList.add('hidden')
+}
+
+
 function show_saved_pose() {
     fetch(`${ALTAIR_URL}/api/get_saved_pose`)
-            .then(response => {
-                if(!response.ok) {
-                    throw new Error(`Bad response from ${ALTAIR_URL}/api/get_saved_pose`)
+        .then(response => {
+            if(!response.ok) {
+                throw new Error(`Bad response from ${ALTAIR_URL}/api/get_saved_pose`)
+            }
+            return response.json()
+        })
+        .then(data => {
+            var poses   = data.poses
+            var parent  = document.getElementById('pose_item')
+
+            if(poses.length != 0) {
+                
+                while(parent.firstChild) {
+                    parent.removeChild(parent.firstChild)
                 }
-                return response.json()
-            })
-            .then(data => {
-                var poses   = data.poses
-                var parent  = document.getElementById('pose_item')
 
-                if(poses.length != 0) {
-                    
-                    while(parent.firstChild) {
-                        parent.removeChild(parent.firstChild)
-                    }
+                for(let i = 0; i < poses.length; i++) {
+                    let item    = document.createElement('tr')
+                    let no      = document.createElement('th')
+                    let file    = document.createElement('td')
 
-                    for(let i = 0; i < poses.length; i++) {
-                        let item    = document.createElement('tr')
-                        let no      = document.createElement('th')
-                        let file    = document.createElement('td')
+                    item.className  = 'bg-gray-800 border-b border-gray-700 hover:bg-gray-600'
+                    no.className    = 'px-3 py-3 font-medium text-white whitespace-nowrap'
+                    file.className  = 'px-20 py-3 font-medium text-white'
 
-                        item.className  = 'bg-gray-800 border-b border-gray-700 hover:bg-gray-600'
-                        no.className    = 'px-3 py-3 font-medium text-white whitespace-nowrap'
-                        file.className  = 'px-20 py-3 font-medium text-white'
+                    item.addEventListener('click', () => {
+                        on_click_pose(poses[i])
+                    })
 
-                        item.addEventListener('click', () => {
-                            document.getElementById("pose_select_overlay").classList.add("hidden");
-                            document.getElementById("pose_select").classList.add("hidden");
-                        })
+                    no.innerHTML    = `${i + 1}`
+                    file.innerHTML  = `${poses[i]}`
 
-                        no.innerHTML    = `${i + 1}`
-                        file.innerHTML  = `${poses[i]}`
-
-                        item.appendChild(no)
-                        item.appendChild(file)
-                        parent.appendChild(item)
-                    }
+                    item.appendChild(no)
+                    item.appendChild(file)
+                    parent.appendChild(item)
                 }
-            })
-            .catch(error => {
-                console.error('Error fetching data: ', error)
-            })
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching data: ', error)
+        })
 
     document.getElementById('pose_select_overlay').classList.remove('hidden')
     document.getElementById('pose_select').classList.remove('hidden')
@@ -55,7 +77,9 @@ function show_save_prompt() {
 
 
 function play_pose() {
-
+    for(let i = 0; i < ALTAIR_DXL_NUM; i++) {
+        document.getElementById(`tpos_${ALTAIR_DXL_ID[i]}`).value = document.getElementById(`spos_${ALTAIR_DXL_ID[i]}`).innerText
+    }
 }
 
 
@@ -86,13 +110,11 @@ function apply_torque() {
 
     if(check_num == ALTAIR_DXL_NUM) {
         play_pose_button.disabled = false
-        play_pose_button.classList.remove("text-gray-950")
-        play_pose_button.classList.add("text-white")
+        play_pose_button.classList.replace("text-gray-950", "text-white")
     }
     else {
         play_pose_button.disabled = true
-        play_pose_button.classList.add("text-gray-950")
-        play_pose_button.classList.remove("text-white")
+        play_pose_button.classList.replace("text-white", "text-gray-950")
     }
 
     fetch(`${ALTAIR_URL}/api/set_torque`, {
@@ -103,6 +125,22 @@ function apply_torque() {
         .then(response => response.json())
         .then(data => {
             console.log(data.message);
+
+            for(let i = 0; i < ALTAIR_DXL_NUM; i++) {
+                var tpos_entry = document.getElementById(`tpos_${ALTAIR_DXL_ID[i]}`)
+
+                if(torque_en[i] == 1) {
+                    tpos_entry.value    = document.getElementById(`pos_${ALTAIR_DXL_ID[i]}`).innerText
+                    tpos_entry.disabled = false
+                    tpos_entry.classList.replace('text-gray-600', 'text-white')
+                }
+
+                else {
+                    tpos_entry.value    = 0
+                    tpos_entry.disabled = true
+                    tpos_entry.classList.replace('text-white', 'text-gray-600')
+                }
+            }
         })
         .catch(error => {
             console.error('Error:', error);

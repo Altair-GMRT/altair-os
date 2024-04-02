@@ -97,6 +97,7 @@ class RclGateway {
 
                 if(this.set_position) {
                     this.set_position = false
+                    goal_position_pub.publish(this.req_msg.goal_position)
                 }
 
                 if(this.set_velocity) {
@@ -120,6 +121,12 @@ class RclGateway {
     }
 
 
+    setPosition(values) {
+        this.set_position = true
+        this.req_msg.goal_position.val = values
+    }
+
+
     savePose(filename, values) {
         const yaml_str  = jsyaml.dump({val: values})
         const file_path = path.join(this.pose_studio_path, `${filename}.yaml`)
@@ -130,10 +137,21 @@ class RclGateway {
     getSavedPose() {
         const dir_path = this.pose_studio_path
         try {
-            return fs.readdirSync(dir_path)
+            return {poses: fs.readdirSync(dir_path)}
         }
         catch(error) {
-            return []
+            return {poses: []}
+        }
+    }
+
+
+    getPoseValue(filename) {
+        const file_path = path.join(this.pose_studio_path, filename)
+        try {
+            return jsyaml.load(fs.readFileSync(file_path, 'utf8'))
+        }
+        catch(error) {
+            return {val: []}
         }
     }
 }
