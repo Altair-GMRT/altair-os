@@ -1,0 +1,31 @@
+<div id="pose_select_overlay" class="hidden fixed top-0 left-0 w-full h-full bg-black opacity-50"></div>
+<div id="pose_select" class="hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg p-8 bg-slate-800 border border-gray-700 shadow-md">
+    <div class="flex flex-row justify-between">
+        <h2 class="mb-4 text-xl text-slate-300">Poses List</h2>
+        <button onclick="cancel_saved_pose()" class="px-4 py-1 mb-6 text-white rounded-xl border border-gray-700 hover:bg-red-600">X</button>
+    </div>
+    <div class="relative overflow-y-scroll max-h-96 shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-center text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-3 py-3">
+                        NO.
+                    </th>
+                    <th scope="col" class="px-20 py-3">
+                        FILE NAME
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="pose_item">
+                <tr class="bg-gray-800 border-b border-gray-700 hover:bg-gray-600">
+                    <th scope="row" class="px-3 py-3 font-medium text-white whitespace-nowrap">
+                        -
+                    </th>
+                    <td class="px-20 py-3 text-white">
+                        No pose file exists
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
