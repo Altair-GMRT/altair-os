@@ -17,6 +17,10 @@ rclnode.init()
 
 
 
+app.get('/', (req, res) => {
+    res.redirect(`/${config.robot_config.id}`)
+})
+
 app.get(`/${config.robot_config.id}`, (req, res) => {
     res.render('pages/index', {
         page_name: 'Welcome',
