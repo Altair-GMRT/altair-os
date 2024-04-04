@@ -107,7 +107,7 @@ class DXLController:
 
 
 
-    def groupSyncRead(self, address:int, size:int, dxl_id:list, error_bypass:bool=False) -> list | int:
+    def groupSyncRead(self, address:int, size:int, dxl_id:list, error_bypass:bool=True) -> list | int:
         data_res = []
 
         group_sync_read = dxl.GroupSyncRead(
@@ -168,7 +168,7 @@ class DXLController:
 
 
 
-    def groupBulkRead(self, address:list, size:list, dxl_id:list, error_bypass:bool=False) -> list | int:
+    def groupBulkRead(self, address:list, size:list, dxl_id:list, error_bypass:bool=True) -> list | int:
         param_num   = len(dxl_id)
         data_res    = []
 
