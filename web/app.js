@@ -76,9 +76,9 @@ app.post(`/${config.robot_config.id}/api/save_pose`, (req, res) => {
     res.json({message: 'Pose saved'})
 })
 
-app.get(`/${config.robot_config.id}/api/get_saved_pose`, (req, res) => {
+app.get(`/${config.robot_config.id}/api/get_saved_poses`, (req, res) => {
     res.status(200)
-    res.json(rclnode.getSavedPose())
+    res.json(rclnode.getSavedPoses())
 })
 
 app.post(`/${config.robot_config.id}/api/get_pose_value`, (req, res) => {
@@ -94,6 +94,26 @@ app.post(`/${config.robot_config.id}/api/set_position`, (req, res) => {
 
     res.status(200)
     res.json({message: 'Position set'})
+})
+
+app.post(`/${config.robot_config.id}/api/save_motion`, (req, res) => {
+    const json_data = req.body
+    rclnode.saveMotion(json_data.filename, json_data.val)
+
+    res.status(200)
+    res.json({message: 'Motion saved'})
+})
+
+app.get(`/${config.robot_config.id}/api/get_saved_motions`, (req, res) => {
+    res.status(200)
+    res.json(rclnode.getSavedMotions())
+})
+
+app.post(`/${config.robot_config.id}/api/get_motion_value`, (req, res) => {
+    const json_data = req.body
+    
+    res.status(200)
+    res.json(rclnode.getMotionValue(json_data.filename))
 })
 
 

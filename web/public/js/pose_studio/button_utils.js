@@ -21,11 +21,11 @@ function on_click_pose(fname) {
 }
 
 
-function show_saved_pose() {
-    fetch(`${ALTAIR_URL}/api/get_saved_pose`)
+function show_saved_poses() {
+    fetch(`${ALTAIR_URL}/api/get_saved_poses`)
         .then(response => {
             if(!response.ok) {
-                throw new Error(`Bad response from ${ALTAIR_URL}/api/get_saved_pose`)
+                throw new Error(`Bad response from ${ALTAIR_URL}/api/get_saved_poses`)
             }
             return response.json()
         })
@@ -33,12 +33,11 @@ function show_saved_pose() {
             var poses   = data.poses
             var parent  = document.getElementById('pose_item')
 
-            if(poses.length != 0) {
-                
-                while(parent.firstChild) {
-                    parent.removeChild(parent.firstChild)
-                }
+            while(parent.firstChild) {
+                parent.removeChild(parent.firstChild)
+            }
 
+            if(poses.length != 0) {
                 for(let i = 0; i < poses.length; i++) {
                     let item    = document.createElement('tr')
                     let no      = document.createElement('th')
@@ -59,6 +58,19 @@ function show_saved_pose() {
                     item.appendChild(file)
                     parent.appendChild(item)
                 }
+            }
+
+            else {
+                parent.innerHTML += `
+                    <tr class="bg-gray-800 border-b border-gray-700 hover:bg-gray-600">
+                        <th scope="row" class="px-3 py-3 font-medium text-white whitespace-nowrap">
+                            -
+                        </th>
+                        <td class="px-20 py-3 text-white">
+                            No pose file exists
+                        </td>
+                    </tr>
+                `
             }
         })
         .catch(error => {

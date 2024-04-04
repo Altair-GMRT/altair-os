@@ -16,7 +16,7 @@ function status_table_update() {
         })
 
     if(!document.getElementById('play_pose_button').disabled) {
-        var goal_pos = []
+        let goal_pos = []
         
         for(let i = 0; i < ALTAIR_DXL_NUM; i++) {
             let val = parseInt(document.getElementById(`tpos_${ALTAIR_DXL_ID[i]}`).value, 10)

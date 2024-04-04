@@ -1,4 +1,4 @@
-function onload_update() {
+function on_load_update() {
     fetch(`${ALTAIR_URL}/api/get_status`)
         .then(response => {
             if(!response.ok) {

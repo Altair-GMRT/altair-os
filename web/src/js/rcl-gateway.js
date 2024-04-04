@@ -134,7 +134,7 @@ class RclGateway {
     }
 
 
-    getSavedPose() {
+    getSavedPoses() {
         const dir_path = this.pose_studio_path
         try {
             return {poses: fs.readdirSync(dir_path)}
@@ -147,6 +147,35 @@ class RclGateway {
 
     getPoseValue(filename) {
         const file_path = path.join(this.pose_studio_path, filename)
+        try {
+            return jsyaml.load(fs.readFileSync(file_path, 'utf8'))
+        }
+        catch(error) {
+            return {val: []}
+        }
+    }
+
+
+    saveMotion(filename, values) {
+        const yaml_str  = jsyaml.dump({val: values})
+        const file_path = path.join(this.motion_sequencer_path, `${filename}.yaml`)
+        fs.writeFileSync(file_path, yaml_str)
+    }
+
+
+    getSavedMotions() {
+        const dir_path = this.motion_sequencer_path
+        try {
+            return {motions: fs.readdirSync(dir_path)}
+        }
+        catch(error) {
+            return {motions: []}
+        }
+    }
+
+
+    getMotionValue(filename) {
+        const file_path = path.join(this.motion_sequencer_path, filename)
         try {
             return jsyaml.load(fs.readFileSync(file_path, 'utf8'))
         }

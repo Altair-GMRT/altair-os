@@ -1,0 +1,11 @@
+<div id="filename_overlay" class="hidden fixed top-0 left-0 w-full h-full bg-black opacity-50"></div>
+<div id="filename" class="hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-lg p-8 bg-slate-800 border border-gray-700 shadow-md">
+    <div class="flex flex-row justify-between">
+        <h2 class="mb-4 text-xl text-slate-300">Save Motion</h2>
+        <button onclick="cancel_save_motion()" class="px-4 py-1 mb-4 text-white rounded-xl border border-gray-700 hover:bg-red-600">X</button>
+    </div>
+    <form class="max-w-sm mx-auto flex flex-col items-center">
+        <input id="filename_entry" class="border text-sm rounded-lg block w-64 p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Insert a name for the motion" required />
+        <button type="button" class="text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto mt-4 px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800" onclick="save_motion()">Save</button>
+    </form>
+</div>
