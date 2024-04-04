@@ -5,20 +5,46 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# find dependencies
+include_directories(${CMAKE_SOURCE_DIR}/include)
+
+
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+find_package(altair_data)
+
+
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "msg/TestMessage.msg"
+  "msg/JointTorque.msg"
+  "msg/JointPosition.msg"
+  "msg/JointVelocity.msg"
+  "msg/JointSensor.msg"
+)
+ament_export_dependencies(rosidl_default_runtime)
+rosidl_get_typesupport_target(cpp_typesupport_target
+  ${PROJECT_NAME} 
+  rosidl_typesupport_cpp
+)
+
+
+add_executable(app_launcher
+  src/app_launcher.cpp
+  src/altair_interfaces/app_launcher_node.cpp
+)
+ament_target_dependencies(app_launcher
+  rclcpp
+  altair_data
+)
+install(TARGETS
+  app_launcher
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
-  # the following line skips the linter which checks for copyrights
-  # comment the line when a copyright and license is added to all source files
   set(ament_cmake_copyright_FOUND TRUE)
-  # the following line skips cpplint (only works in a git repo)
-  # comment the line when this package is in a git repo and when
-  # a copyright and license is added to all source files
   set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()

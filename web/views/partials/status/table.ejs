@@ -1,0 +1,200 @@
+<div class="relative overflow-x-auto shadow-md my-4 mr-2 ml-4 sm:rounded-lg" id="table_a1">
+    <table class="w-full text-sm text-center text-white">
+        <thead class="text-xs uppercase">
+            <tr>
+                <th scope="col" class="px-3 py-3 bg-gray-800">
+                    Enable
+                </th>
+                <th scope="col" class="px-3 py-3">
+                    DXL ID
+                </th>
+                <th scope="col" class="px-3 py-3 bg-gray-800">
+                    Joint Name
+                </th>
+                <th scope="col" class="px-3 py-3">
+                    Position
+                </th>
+                <th scope="col" class="px-3 py-3 bg-gray-800">
+                    Velocity
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Load
+                </th>
+                <th scope="col" class="px-3 py-3 bg-gray-800">
+                    DXL Type
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i = 0; i < Math.floor(joint_config.dxl_num/2); i++) { %>
+                <tr class="border-b border-gray-700">
+                    <th scope="row" class="px-3 py-3 font-medium whitespace-nowrap bg-gray-800">
+                        <input type="checkbox" id="torque_en_<%= joint_config.dxl_id[i] %>" name="<%= joint_config.joint_name[i] %>" value="Bike">
+                    </th>
+                    <td class="px-3 py-3">
+                        <%= joint_config.dxl_id[i] %>
+                    </td>
+                    <td class="px-3 py-3 bg-gray-800">
+                        <%= joint_config.joint_name[i] %>
+                    </td>
+                    <td class="px-3 py-3" id="pos_<%= joint_config.dxl_id[i] %>">
+                        0.0
+                    </td>
+                    <td class="px-3 py-3 bg-gray-800" id="vel_<%= joint_config.dxl_id[i] %>">
+                        0.0
+                    </td>
+                    <td class="px-3 py-3" id="load_<%= joint_config.dxl_id[i] %>">
+                        0.0
+                    </td>
+                    <td class="px-3 py-3 bg-gray-800">
+                        <%= joint_config.dxl_type[i] %>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+<div class="relative overflow-x-auto shadow-md my-4 ml-8 mr-4 sm:rounded-lg" id="table_a2">
+    <table class="w-full text-sm text-center text-white">
+        <thead class="text-xs uppercase">
+            <tr>
+                <th scope="col" class="px-3 py-3 bg-gray-800">
+                    Enable
+                </th>
+                <th scope="col" class="px-3 py-3">
+                    DXL ID
+                </th>
+                <th scope="col" class="px-3 py-3 bg-gray-800">
+                    Joint Name
+                </th>
+                <th scope="col" class="px-3 py-3">
+                    Position
+                </th>
+                <th scope="col" class="px-3 py-3 bg-gray-800">
+                    Velocity
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Load
+                </th>
+                <th scope="col" class="px-3 py-3 bg-gray-800">
+                    DXL Type
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i = Math.floor(joint_config.dxl_num/2); i < joint_config.dxl_num; i++) { %>
+                <tr class="border-b border-gray-700">
+                    <th scope="row" class="px-3 py-3 font-medium whitespace-nowrap bg-gray-800">
+                        <input type="checkbox" id="torque_en_<%= joint_config.dxl_id[i] %>" name="<%= joint_config.joint_name[i] %>" value="Bike">
+                    </th>
+                    <td class="px-3 py-3">
+                        <%= joint_config.dxl_id[i] %>
+                    </td>
+                    <td class="px-3 py-3 bg-gray-800">
+                        <%= joint_config.joint_name[i] %>
+                    </td>
+                    <td class="px-3 py-3" id="pos_<%= joint_config.dxl_id[i] %>">
+                        0.0
+                    </td>
+                    <td class="px-3 py-3 bg-gray-800" id="vel_<%= joint_config.dxl_id[i] %>">
+                        0.0
+                    </td>
+                    <td class="px-3 py-3" id="load_<%= joint_config.dxl_id[i] %>">
+                        0.0
+                    </td>
+                    <td class="px-3 py-3 bg-gray-800">
+                        <%= joint_config.dxl_type[i] %>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+<div class="hidden relative overflow-x-auto shadow-md my-4 mr-2 ml-4 sm:rounded-lg" id="table_b1">
+    <table class="w-full text-sm text-center text-white">
+        <thead class="text-xs uppercase">
+            <tr>
+                <th scope="col" class="px-3 py-3 bg-gray-800">
+                    DXL ID
+                </th>
+                <th scope="col" class="px-3 py-3">
+                    Joint Name
+                </th>
+                <th scope="col" class="px-3 py-3 bg-gray-800">
+                    Voltage
+                </th>
+                <th scope="col" class="px-3 py-3">
+                    Temperature
+                </th>
+                <th scope="col" class="px-3 py-3 bg-gray-800">
+                    DXL Type
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i = 0; i < Math.floor(joint_config.dxl_num/2); i++) { %>
+                <tr class="border-b border-gray-700">
+                    <td class="px-3 py-3 bg-gray-800">
+                        <%= joint_config.dxl_id[i] %>
+                    </td>
+                    <td class="px-3 py-3">
+                        <%= joint_config.joint_name[i] %>
+                    </td>
+                    <td class="px-3 py-3 bg-gray-800" id="volt_<%= joint_config.dxl_id[i] %>">
+                        0.0
+                    </td>
+                    <td class="px-3 py-3" id="temp_<%= joint_config.dxl_id[i] %>">
+                        0.0
+                    </td>
+                    <td class="px-3 py-3 bg-gray-800">
+                        <%= joint_config.dxl_type[i] %>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+<div class="hidden relative overflow-x-auto shadow-md my-4 ml-8 mr-4 sm:rounded-lg" id="table_b2">
+    <table class="w-full text-sm text-center text-white">
+        <thead class="text-xs uppercase">
+            <tr>
+                <th scope="col" class="px-3 py-3 bg-gray-800">
+                    DXL ID
+                </th>
+                <th scope="col" class="px-3 py-3">
+                    Joint Name
+                </th>
+                <th scope="col" class="px-3 py-3 bg-gray-800">
+                    Voltage
+                </th>
+                <th scope="col" class="px-3 py-3">
+                    Temperature
+                </th>
+                <th scope="col" class="px-3 py-3 bg-gray-800">
+                    DXL Type
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i = Math.floor(joint_config.dxl_num/2); i < joint_config.dxl_num; i++) { %>
+                <tr class="border-b border-gray-700">
+                    <td class="px-3 py-3 bg-gray-800">
+                        <%= joint_config.dxl_id[i] %>
+                    </td>
+                    <td class="px-3 py-3">
+                        <%= joint_config.joint_name[i] %>
+                    </td>
+                    <td class="px-3 py-3 bg-gray-800" id="volt_<%= joint_config.dxl_id[i] %>">
+                        0.0
+                    </td>
+                    <td class="px-3 py-3" id="temp_<%= joint_config.dxl_id[i] %>">
+                        0.0
+                    </td>
+                    <td class="px-3 py-3 bg-gray-800">
+                        <%= joint_config.dxl_type[i] %>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>

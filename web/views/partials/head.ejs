@@ -1,0 +1,12 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/css/output.css">
+<title>Altair - <%= page_name %></title>
+<script>
+    var ALTAIR_URL              = 'http://<%= robot_config.ip %>:3000/<%= robot_config.id %>'
+    var ALTAIR_MASTER_CLOCK_MS  = parseFloat('<%= robot_config.master_clock %>')*1000
+    var ALTAIR_DXL_NUM          = parseInt('<%= joint_config.dxl_num %>', 10)
+    var ALTAIR_DXL_ID           = '<%= joint_config.dxl_id %>'.split(',').map((str) => {return parseInt(str, 10)})
+    var ALTAIR_DXL_TYPE         = '<%= joint_config.dxl_type %>'.split(',')
+    var ALTAIR_JOINT_NAME       = '<%= joint_config.joint_name %>'.split(',')
+</script>

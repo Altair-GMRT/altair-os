@@ -1,5 +1,6 @@
 FROM ubuntu:jammy
 
+# ------------[ LOCALES SETUP ]------------
 RUN apt-get update && \
     apt-get install -y locales && \
     locale-gen en_US en_US.UTF-8 && \
@@ -12,6 +13,7 @@ ENV ROS_PYTHON_VERSION=3
 ENV TZ=Asia/Jakarta
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+# ------------[ ROS2 HUMBLE INSTALLATION ]------------
 RUN apt-get update && \
     apt-get install -y software-properties-common curl && \
     add-apt-repository universe && \
@@ -38,20 +40,41 @@ RUN apt-get update && \
 RUN rosdep init && \
     rosdep update --rosdistro humble
 
-RUN apt-get update && \
-    apt-get install -y git && \
-    git clone https://github.com/ROBOTIS-GIT/DynamixelSDK.git
-WORKDIR /DynamixelSDK/python/
+# ------------[ DYNAMIXEL SDK INSTALLATION ]------------
+RUN git clone https://github.com/ROBOTIS-GIT/DynamixelSDK.git
+
+WORKDIR /DynamixelSDK/python
+
 RUN python3 setup.py install
+
 WORKDIR /
+
 RUN rm -rf /DynamixelSDK && \
     apt-get remove -y git
 
-RUN echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc
-RUN echo '#!/usr/bin/env bash' > /rcl_entrypoint.sh
-RUN echo 'source /opt/ros/humble/setup.bash' >> /rcl_entrypoint.sh
+# ------------[ NODEJS INSTALLATION ]------------
+RUN apt-get update && \
+    apt-get install -y npm lsof && \
+    npm install -g node@20.11.1
+
+# ------------[ PYTHON LIBRARIES ]------------
+RUN apt-get update && \
+    apt-get install -y pip && \
+    pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir \ 
+    numpy \
+    pyyaml \ 
+    && \
+    apt-get remove -y pip
+
+# ------------[ BASH SETUP ]------------
+RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+RUN echo "#!/usr/bin/env bash" > /rcl_entrypoint.sh
+RUN echo "source /opt/ros/humble/setup.bash" >> /rcl_entrypoint.sh
 RUN echo 'exec "$@"' >> /rcl_entrypoint.sh
 RUN chmod +x /rcl_entrypoint.sh
 
+# ------------[ ENTRYPOINT AND LOOP ]------------
 ENTRYPOINT ["/rcl_entrypoint.sh"]
+WORKDIR /altair-os
 CMD ["tail", "-f", "/dev/null"]

@@ -1,8 +1,11 @@
 services:
-  altair-rcl:
+  altair-os:
     image: altair-os
     container_name: altair-os
-    ports:
-      - '3000:3000'
+    # devices:
+    #   - /dev/ttyUSB0:/dev/ttyUSB0
     volumes:
       - ./src:/altair-os/src
+      - ./web:/altair-os/web
+    ports:
+      - "3000:3000"

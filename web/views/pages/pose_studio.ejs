@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <script src="/js/navbar_utils.js"></script>
+    <script src="/js/pose_studio/button_utils.js"></script>
+    <script src="/js/pose_studio/table_update.js"></script>
+    <script src="/js/pose_studio/pose_select.js"></script>
+    <script src="/js/pose_studio/save.js"></script>
+    <script src="/js/pose_studio/onload.js"></script>
+</head>
+
+<body class="bg-gray-950 overflow-y-hidden" onload="on_load_update()">
+    <%- include('../partials/navbar') %>
+    <div class="m-4 flex flex-row">
+        <%- include('../partials/pose_studio/table') %>
+        <%- include('../partials/pose_studio/button') %>
+    </div>
+    <%- include('../partials/pose_studio/pose_select_popup') %>
+    <%- include('../partials/pose_studio/save_popup') %>
+</body>
+
+</html>
