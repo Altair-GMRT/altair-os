@@ -185,13 +185,17 @@ class AppControllerNode(Node):
         mx28_res = self.dxl_controller.groupSyncRead(
             address = DXL_MX28_TORQUE_ENABLE_ADDR,
             size    = DXL_MX28_TORQUE_ENABLE_SIZE,
-            dxl_id  = self.mx28_id_list
+            dxl_id  = self.mx28_id_list,
+            error_bypass        = True,
+            error_handle_val    = 2
         )
 
         mx64_res = self.dxl_controller.groupSyncRead(
             address = DXL_MX64_TORQUE_ENABLE_ADDR,
             size    = DXL_MX64_TORQUE_ENABLE_SIZE,
-            dxl_id  = self.mx64_id_list
+            dxl_id  = self.mx64_id_list,
+            error_bypass        = True,
+            error_handle_val    = 2
         )
 
         res         = []
@@ -213,13 +217,17 @@ class AppControllerNode(Node):
         mx28_res = self.dxl_controller.groupSyncRead(
             address = DXL_MX28_PRESENT_POSITION_ADDR,
             size    = DXL_MX28_PRESENT_POSITION_SIZE,
-            dxl_id  = self.mx28_id_list
+            dxl_id  = self.mx28_id_list,
+            error_bypass        = True,
+            error_handle_val    = 999999999
         )
 
         mx64_res = self.dxl_controller.groupSyncRead(
             address = DXL_MX64_PRESENT_POSITION_ADDR,
             size    = DXL_MX64_PRESENT_POSITION_SIZE,
-            dxl_id  = self.mx64_id_list
+            dxl_id  = self.mx64_id_list,
+            error_bypass        = True,
+            error_handle_val    = 999999999
         )
 
         res         = []
@@ -241,13 +249,17 @@ class AppControllerNode(Node):
         mx28_res = self.dxl_controller.groupSyncRead(
             address = DXL_MX28_PRESENT_VELOCITY_ADDR,
             size    = DXL_MX28_PRESENT_VELOCITY_SIZE,
-            dxl_id  = self.mx28_id_list
+            dxl_id  = self.mx28_id_list,
+            error_bypass        = True,
+            error_handle_val    = 999999999
         )
 
         mx64_res = self.dxl_controller.groupSyncRead(
             address = DXL_MX64_PRESENT_VELOCITY_ADDR,
             size    = DXL_MX64_PRESENT_VELOCITY_SIZE,
-            dxl_id  = self.mx64_id_list
+            dxl_id  = self.mx64_id_list,
+            error_bypass        = True,
+            error_handle_val    = 999999999
         )
 
         res         = []
