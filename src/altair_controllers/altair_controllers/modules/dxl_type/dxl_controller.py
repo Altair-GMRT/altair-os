@@ -1,5 +1,5 @@
 import dynamixel_sdk as dxl
-from dxl_table import *
+from .dxl_table import *
 
 
 
