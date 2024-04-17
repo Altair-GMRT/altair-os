@@ -59,7 +59,7 @@ It is more convenient to develop and build the web app on our own machine. But s
 
 ```console
 # On host machine
-colcon build --packages-select altair_interfaces
+colcon build --packages-select altair_data altair_interfaces
 source install/setup.bash
 cd web/
 npm install
