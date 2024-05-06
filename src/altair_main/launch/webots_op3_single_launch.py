@@ -1,12 +1,18 @@
 import os
 import yaml
+import launch
 from launch import LaunchDescription
+from ament_index_python.packages import get_package_share_directory
 from launch_ros.actions import Node
+from webots_ros2_driver.webots_launcher import WebotsLauncher
+from webots_ros2_driver.webots_controller import WebotsController
 
 
 CORE_CONFIG_PATH    = os.path.join(os.getcwd(), 'src/altair_data/config/core_config.yaml')
 JOINT_CONFIG_PATH   = os.path.join(os.getcwd(), 'src/altair_data/config/joint_config.yaml')
 ROBOT_CONFIG_PATH   = os.path.join(os.getcwd(), 'src/altair_data/config/robot_config.yaml')
+PKG_SHARE_PATH      = get_package_share_directory('altair_simulations')
+ROBOT_DESC_PATH     = os.path.join(PKG_SHARE_PATH, 'resource', 'op3_single.urdf')
 
 
 with open(ROBOT_CONFIG_PATH, 'r') as file:
@@ -27,29 +33,24 @@ with open(JOINT_CONFIG_PATH, 'r') as file:
 
 def generate_launch_description():
     
-    app_controller_node = Node(
-        package     = 'altair_controllers',
-        executable  = 'app_controller',
-        name        = f'{ROBOT_ID}_app_controller',
+    webots = WebotsLauncher(
+        world = os.path.join(PKG_SHARE_PATH, 'worlds', 'op3_single_world.wbt')
+    )
+
+    robotis_op3_driver = WebotsController(
+        robot_name  = 'robotis_op3',
         parameters  = [
-            {'id': ROBOT_ID},
-            {'dxl_baudrate': DXL_BAUDRATE},
-            {'dxl_u2d2_port': DXL_U2D2_PORT},
-            {'dxl_num': DXL_NUM},
-            {'dxl_id': DXL_ID},
-            {'dxl_type': DXL_TYPE},
-            {'joint_name': JOINT_NAME},
-            {'master_clock': MASTER_CLOCK}
+            {'robot_description': ROBOT_DESC_PATH},
         ]
     )
 
-    app_launcher_node = Node(
-        package     = 'altair_interfaces',
-        executable  = 'app_launcher',
-        name        = f'{ROBOT_ID}_app_launcher'
-    )
-
     return LaunchDescription([
-        app_controller_node,
-        app_launcher_node
+        webots,
+        robotis_op3_driver,
+        launch.actions.RegisterEventHandler(
+            event_handler = launch.event_handlers.OnProcessExit(
+                target_action   = webots,
+                on_exit         = [launch.actions.EmitEvent(event=launch.events.Shutdown())],
+            )
+        )
     ])
