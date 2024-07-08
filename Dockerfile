@@ -28,6 +28,7 @@ RUN apt-get update && \
     apt-get install --no-install-recommends -y \
     build-essential \
     git \
+    libserial-dev \
     nano \
     iputils-ping \
     wget \
