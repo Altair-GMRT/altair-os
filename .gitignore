@@ -3,3 +3,6 @@ install/
 log/
 node_modules/
 .vscode/
+Dockerfile
+compose.yaml
+
