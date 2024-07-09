@@ -9,3 +9,4 @@ services:
       - ./web:/altair-os/web
     ports:
       - "3000:3000"
+    privileged: true

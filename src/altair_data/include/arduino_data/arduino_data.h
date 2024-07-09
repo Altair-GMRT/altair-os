@@ -2,16 +2,20 @@
 #define Controller_H
 
 
-#include <iostream>
 
+#include <iostream>
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/imu.h"
-#include "std_msgs/msg/string.h"
+#include "std_msgs/msg/string.h"  
 #include <string>
+#include <string.h>
 #include <yaml-cpp/yaml.h>
 #include <stdio.h>
-#include <tf2>
-#include <eigen3>
+#include <tf2_ros/transform_broadcaster.h>
+#include <geometry_msgs/msg/transform_stamped.hpp>
+#include <tf2/convert.h>
+#include <eigen3/Eigen/src/Geometry/Quaternion.h>
+#include "robotis_math/robotis_linear_algebra.h"
 
 #include <fcntl.h> // Contains file controls like O_RDWR
 #include <errno.h> // Error integer and strerror() function
@@ -19,7 +23,7 @@
 #include <unistd.h> // write(), read(), close()
 #include <cstdlib>
 #include <mutex>
-#include <libserial/SerialPort.h>
+#include <fstream>
 
 class Arduino_Data:
 {
@@ -50,7 +54,7 @@ public slots:
   void run();
 
 private:
-  LibSerial::SerialPort serial;
+  int fd;
   auto devicedata;
   std::mutex mutex;
   bool currentPortNameChanged;
@@ -72,10 +76,15 @@ private:
 
   bool data_ready;
   rx_arduino_state arduino_state;
-  std::string roll,pitch,yaw,gyroRoll,gyroPitch,gyroYaw,accelX,accelY,accelZ, temp_data;
+  double roll,pitch,yaw,gyroRoll,gyroPitch,gyroYaw,accelX,accelY,accelZ, temp_data;
+  std::string read_buffer;
+  char type;
+  int value;
   int button, prev_button;
   bool readyToSend;
   std::map<int, std::string> button_mapping;
+
+  boost::asio::io_service io;
 
   void debugDevice();
   void publishData();

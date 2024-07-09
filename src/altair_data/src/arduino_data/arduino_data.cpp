@@ -28,16 +28,47 @@ bool Arduino_Data::initialize()
   baudRate = 1000000;
   waitTimeout = 500;
   broadcast = true;
-  deviceCheck();
   std::string default_path;
   default_path = "../../config/GlobalConfig.yaml";
   loadButton(default_path);
-  serial(portName);
-  serial.SetBaudRate(LibSerial::BaudRate::BAUD_1000000);
-  serial.SetCharacterSize(LibSerial::CharacterSize::CHAR_SIZE_8);
-  serial.SetParity(LibSerial::Parity::PARITY_NONE);
-  serial.SetStopBits(LibSerial::StopBits::STOP_BITS_1);
-  serial.SetFlowControl(LibSerial::FlowControl::FLOW_CONTROL_NONE);
+  try {
+    fd = open(portname, O_RDWR | O_NOCTTY | O_SYNC);
+  }
+  catch {
+    RCLCPP_ERROR("Error Opening Port");
+    return false;
+  }
+
+  // CONFIGURE PORT
+  struct termios tty;
+  memset(&tty, 0, sizeof tty);
+
+  if (tcgetattr(fd, &tty) != 0) {
+      cerr << "Error " << errno << " from tcgetattr: " << strerror(errno) << endl;
+      return false;
+  }
+
+  cfsetospeed(&tty, B9600);
+  cfsetispeed(&tty, B9600);
+
+  tty.c_cflag &= ~PARENB; // Make 8n1
+  tty.c_cflag &= ~CSTOPB;
+  tty.c_cflag &= ~CSIZE;
+  tty.c_cflag |= CS8;
+
+  tty.c_cflag &= ~CRTSCTS; // No flow control
+  tty.c_cc[VMIN] = 1; // Read at least 1 character
+  tty.c_cc[VTIME] = 5; // 0.5 seconds read timeout
+
+  tty.c_cflag |= CREAD | CLOCAL; // Turn on the READ & ignore ctrl lines
+
+  cfmakeraw(&tty);
+
+  tcflush(fd, TCIFLUSH);
+
+  if (tcsetattr(fd, TCSANOW, &tty) != 0) {
+      cerr << "Error " << errno << " from tcsetattr" << endl;
+  }
 
   return true;
 
@@ -78,30 +109,37 @@ void Arduino_Data::debugDevice()
   RCLCPP_WARN("Port Name: %s", portName);
 }
 
-void Arduino_Data::deviceCheck()
+void Arduino_Data::configure_port(int fd)
 {
-  // std::vector<LibSerial::SerialPortInfo> ports = LibSerial::SerialPort::GetAvailableSerialPorts();
-  // for(auto p : ports)
-  // {
-  //   if(portName == p)
-  //   {
-  //     RCLCPP_WARN("Found Port: %s" , p.c_str());
-  //     devicedata = p;
-  //     debugDevice();
-  //     dev_connected = true;
-  //     break;
-  //   }
-  // }
+    struct termios tty;
+    memset(&tty, 0, sizeof tty);
 
-  mutex.lock();
+    if (tcgetattr(fd, &tty) != 0) {
+        cerr << "Error " << errno << " from tcgetattr: " << strerror(errno) << endl;
+        return;
+    }
 
-  if (currentPortName != portName) {
-    currentPortName = portName;
-    currentPortNameChanged = true;
-    dev_connected = false;
-  }
+    cfsetospeed(&tty, B1000000);
+    cfsetispeed(&tty, B1000000);
 
-  mutex.unlock();
+    tty.c_cflag &= ~PARENB; // Make 8n1
+    tty.c_cflag &= ~CSTOPB;
+    tty.c_cflag &= ~CSIZE;
+    tty.c_cflag |= CS8;
+
+    tty.c_cflag &= ~CRTSCTS; // No flow control
+    tty.c_cc[VMIN] = 1; // Read at least 1 character
+    tty.c_cc[VTIME] = 5; // 0.5 seconds read timeout
+
+    tty.c_cflag |= CREAD | CLOCAL; // Turn on the READ & ignore ctrl lines
+
+    cfmakeraw(&tty);
+
+    tcflush(fd, TCIFLUSH);
+
+    if (tcsetattr(fd, TCSANOW, &tty) != 0) {
+        cerr << "Error " << errno << " from tcsetattr" << endl;
+    }
 }
 
 void Arduino_Data::run(std::promise<void>& quitSignal)
@@ -114,216 +152,103 @@ void Arduino_Data::run(std::promise<void>& quitSignal)
       publishData();
     rclcpp::spinOnce(ros_node);
   }
+  // close(fd);
 
   RCLCPP_WARN("Ros shutdown, proceeding to close the port");
   // Signal that the task is finished
-  quitSignal.set_value();
-  std::exit(0);
+  // quitSignal.set_value();
+  // std::exit(0);
 }
 
 void Arduino_Data::deviceLoop()
 {
-  if (currentPortNameChanged || reconnect)
-  {
-    if(reconnect)
-      RCLCPP_WARN("Arduino Reconnecting");
-    serial.Close(portName);
-    serial(portName);
-    serial.SetBaudRate(LibSerial::BaudRate::BAUD_9600);
-    serial.SetCharacterSize(LibSerial::CharacterSize::CHAR_SIZE_8);
-    serial.SetParity(LibSerial::Parity::PARITY_NONE);
-    serial.SetStopBits(LibSerial::StopBits::STOP_BITS_1);
-    serial.SetFlowControl(LibSerial::FlowControl::FLOW_CONTROL_NONE);
-    devicedata = portName;
-    currentPortNameChanged = false;
-    debugDevice();
-    }
-
-    try
-    {
-        serial.Open(portName);
-    }
-    catch (const OpenFailed&)
-    {
-        RCLCPP_ERROR("Arduino Error open device %s", portName.c_str());
-        dev_connected = false;
-        return EXIT_FAILURE;
-    }
-    dev_connected = true;
-    reconnect = false;
-    timeOut_ctr = 0;
-    RCLCPP_WARN("Arduino Ready to Read");
+  // fd = open(portName, O_RDWR | O_NOCTTY | O_SYNC);
+  // if (fd < 0) {
+  //   cerr << "Error " << errno << " opening " << portName << ": " << strerror(errno) << endl;
+  //   return;
+  // }
+  if(reconnect) {
+    close(fd);
+    Arduino_Data::initialize();
   }
+  
+  std::ifstream serial(portName);
 
-  if (serial.IsDataAvailable()) {
-    reconnect = false;
-    timeOut_ctr = 0;
-    // read request
-    LibSerial::DataBuffer requestData;
-    serial.read(requestData, 0, 500);
-    for(auto data: requestData)
-    {
-      switch (arduino_state)
-      {
-      case Ardu_Start_U :
-      {
-        data_ready = false;
-        temp_data.append(data);
-        if(data == 'G')
-        {
-          temp_data = std::regex_replace(temp_data, regexPattern, "");
-          roll = temp_data
-          
-          arduino_state = Ardu_Start_G;
-          temp_data.clear();
-        }
-        break;
-      }
+  // removed while(getline(...)) {}
+  std::getline(serial, read_buffer)
+  std::istringstream iss(read_buffer);
+  char type;
+  double value;
+  dev_connected = true;
 
-      case Ardu_Start_G :
-      {
-        data_ready = false;
-        temp_data.append(data);
-        if(data == 'M')
-        {
-          temp_data = std::regex_replace(temp_data, regexPattern, "");
-          pitch = temp_data;
-          arduino_state = Ardu_Start_M;
-          temp_data.clear();
-        }
-        break;
-
-      }
-
-      case Ardu_Start_M :
-      {
-        data_ready = false;
-        temp_data.append(data);
-        if(data == 'D')
-        {
-          temp_data = std::regex_replace(temp_data, regexPattern, "");
-          yaw = temp_data;
-          arduino_state = Ardu_Start_D;
-          temp_data.clear();
-        }
-        break;
-      }
-      case Ardu_Start_D :
-      {
-        data_ready = false;
-        temp_data.append(data);
-        if(data == 'I')
-        {
-          temp_data = std::regex_replace(temp_data, regexPattern, "");
-          gyroRoll = temp_data;
-          arduino_state = Ardu_Start_I;
-          temp_data.clear();
-        }
-        break;
-      }
-      case Ardu_Start_I :
-      {
-        data_ready = false;
-        temp_data.append(data);
-        if(data == 'Y')
-        {
-          temp_data = std::regex_replace(temp_data, regexPattern, "");
-          gyroPitch = temp_data;
-          arduino_state = Ardu_Start_Y;
-          temp_data.clear();
-        }
-        break;
-      }
-      case Ardu_Start_Y :
-      {
-        data_ready = false;
-        temp_data.append(data);
-        if(data == 'P')
-        {
-          temp_data = std::regex_replace(temp_data, regexPattern, "");
-          gyroYaw = temp_data;
-          arduino_state = Ardu_Start_P;
-          temp_data.clear();
-        }
-        break;
-      }
-      case Ardu_Start_P :
-      {
-        data_ready = false;
-        temp_data.append(data);
-        if(data == 'C')
-        {
-          temp_data = std::regex_replace(temp_data, regexPattern, "");
-          accelX = temp_data;
-          arduino_state = Ardu_Start_C;
-          temp_data.clear();
-        }
-        break;
-      }
-      case Ardu_Start_C :
-      {
-        data_ready = false;
-        temp_data.append(data);
-        if(data == 'T')
-        {
-          temp_data = std::regex_replace(temp_data, regexPattern, "");
-          accelY = temp_data;
-          arduino_state = Ardu_Start_T;
-          temp_data.clear();
-        }
-        break;
-      }
-      case Ardu_Start_T :
-      {
-        data_ready = false;
-        temp_data.append(data);
-        if(data == 'B')
-        {
-          temp_data = std::regex_replace(temp_data, regexPattern, "");
-          accelZ = temp_data;
-          arduino_state = Ardu_Start_B;
-          temp_data.clear();
-        }
-        break;
-      }
-      case Ardu_Start_B :
-      {
-        data_ready = false;
-        temp_data.append(data);
-        if(data == 'A')
-        {
-          temp_data = std::regex_replace(temp_data, regexPattern, "");
-          QString button_ = temp_data;
-          button = button_.toInt();
-          arduino_state = Ardu_Start_U;
+  if (iss >> type >> value) {
+    switch (type) {
+      case 'U':
+          // std::cout << "Type U: " << value << '\n';
+          roll = value;
+          data_ready = false;
+          break;
+      case 'G':
+          // std::cout << "Type G: " << value << '\n';
+          pitch = value;
+          data_ready = false;
+          break;
+      case 'M':
+          // std::cout << "Type M: " << value << '\n';
+          yaw = value;
+          data_ready = false;
+          break;
+      case 'D':
+          // std::cout << "Type D: " << value << '\n';
+          gyroRoll = value;
+          data_ready = false;
+          break;
+      case 'I':
+          // std::cout << "Type I: " << value << '\n';
+          gyroPitch = value;
+          data_ready = false;
+          break;
+      case 'Y':
+          // std::cout << "Type Y: " << value << '\n';
+          gyroYaw = value;
+          data_ready = false;
+          break;
+      case 'P':
+          // std::cout << "Type P: " << value << '\n';
+          accelX = value;
+          data_ready = false;
+          break;
+      case 'C':
+          // std::cout << "Type C: " << value << '\n';
+          accelY = value;
+          data_ready = false;
+          break;
+      case 'T':
+          // std::cout << "Type T: " << value << '\n';
+          accelZ = value;
           data_ready = true;
-          temp_data.clear();
-        }
-        break;
-      }
+          break;
+      case 'B':
+          // std::cout << "Type B: " << value << '\n';
+          button = value;
+          data_ready = true;
+          break;
     }
-
-
-  } else {
-    RCLCPP_WARN("Timeout");
-    timeOut_ctr++;
-    if(timeOut_ctr>100)
-    {
-      reconnect = true;
-      dev_connected = false;
-    }
-
   }
-
+  else {
+    // std::cerr << "Failed to parse line: " << line << '\n';
+    RCLCPP_ERROR("Failed to Parse Data");
+    reconnect = true;
+    dev_connected = false;
+    return;
+  }
 }
 
 void Arduino_Data::publishData()
 {
-  double roll_ = -roll.toDouble() * DEGREE2RADIAN; double pitch_ = pitch.toDouble() * DEGREE2RADIAN; double yaw_ = -yaw.toDouble() * DEGREE2RADIAN;
-  roll.clear(); pitch.clear(); yaw.clear();
-  double gyroRoll_ = gyroRoll.toDouble() * DEGREE2RADIAN; double gyroPitch_ = -gyroPitch.toDouble() * DEGREE2RADIAN; double gyroYaw_ = gyroYaw.toDouble() * DEGREE2RADIAN;
-  gyroRoll.clear(); gyroPitch.clear(); gyroYaw.clear();
-  double accelX_ = accelX.toDouble(); double accelY_ = accelY.toDouble(); double accelZ_ = accelZ.toDouble();
+  double roll_ = -roll * DEGREE2RADIAN; double pitch_ = pitch * DEGREE2RADIAN; double yaw_ = -yaw * DEGREE2RADIAN;
+  double gyroRoll_ = gyroRoll * DEGREE2RADIAN; double gyroPitch_ = -gyroPitch * DEGREE2RADIAN; double gyroYaw_ = gyroYaw * DEGREE2RADIAN;
+  double accelX_ = accelX; double accelY_ = accelY; double accelZ_ = accelZ;
 
   if(!dev_connected)
   {
@@ -336,12 +261,20 @@ void Arduino_Data::publishData()
   Eigen::Vector3 accel(accelX_, accelY_, accelZ_);
   sensor_msgs::msg::Imu imu;
 
-  tf::StampedTransform transform;
-  tf::TransformBroadcaster br;
+  // DEPRECATED CODES
+  // tf2::StampedTransform transform;
+  // tf2::TransformBroadcaster br;
+  // tf2::quaternionEigenToMsg(quaternion, imu.orientation);
+  // tf2::vectorEigenToMsg(gyro, imu.angular_velocity);
+  // tf2::vectorEigenToMsg(accel, imu.linear_acceleration);
 
-  tf::quaternionEigenToMsg(quaternion, imu.orientation);
-  tf::vectorEigenToMsg(gyro, imu.angular_velocity);
-  tf::vectorEigenToMsg(accel, imu.linear_acceleration);
+  geometry_msgs::msg::TransformStamped transform;
+  tf2_ros::TransformBroadcaster br;
+  tf2::convert(quaternion, imu_msg.orientation);
+  tf2::convert(gyro, imu_msg.angular_velocity);
+  tf2::convert(accel, imu_msg.linear_acceleration);
+
+
   imu.header.stamp = rclcpp::Time::now();
   imu.header.frame_id = "imu_link";
 
@@ -379,8 +312,8 @@ button_pub->publish(button_str);
     transform.frame_id_= "base_link";
     transform.child_frame_id_ = "imu_link";
     transform.stamp_ = rclcpp::Time::now();
-    transform.setOrigin(tf::Vector3(0,0,0));
-    tf::Quaternion q = tf::createQuaternionFromRPY(roll_, pitch_, yaw_);
+    transform.setOrigin(tf2::Vector3(0,0,0));
+    tf2::Quaternion q = tf2::createQuaternionFromRPY(roll_, pitch_, yaw_);
     transform.setRotation(q);
     br.sendTransform(transform);
   }
