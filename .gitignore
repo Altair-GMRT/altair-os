@@ -2,6 +2,7 @@ build/
 install/
 log/
 node_modules/
+src/experiment
 .vscode/
 Dockerfile
 compose.yaml

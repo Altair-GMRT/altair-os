@@ -24,7 +24,7 @@ add_executable(arduino_data_node
   src/arduino_data/arduino_data_node.cpp
   src/arduino_data/arduino_data.cpp)
 
-ament_target_dependencies(arduino_data_node PUBLIC rclcpp yaml_cpp_vendor sensor_msgs geometry_msgs std_msgs robotis_math tf2 tf2_ros Eigen3 Boost)
+ament_target_dependencies(arduino_data_node rclcpp yaml_cpp_vendor sensor_msgs geometry_msgs std_msgs robotis_math tf2 tf2_ros Eigen3 Boost)
 # target_link_libraries(arduino_data_node rclcpp yaml_cpp_vendor sensor_msgs geometry_msgs std_msgs robotis_math tf2 tf2_ros Eigen3)
 # target_link_libraries(arduino_data_node Boost::system Boost::thread)
 
