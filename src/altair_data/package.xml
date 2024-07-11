@@ -12,10 +12,13 @@
   <depend>yaml_cpp_vendor</depend>
   <depend>rclcpp</depend> 
   <depend>std_msgs</depend>
-  <depend>tf2</depend>
   <depend>eigen3</depend>
   <depend>sensor_msgs</depend>
   <depend>robotis_math</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+  <depend>geometry_msgs</depend>
+  <depend>boost</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

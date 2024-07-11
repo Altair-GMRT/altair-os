@@ -1,25 +1,20 @@
 #include "arduino_data/arduino_data.h"
 #include <iostream>
 #include <thread>
-#include <future>
 
-int main() {
+
+
+int main(int argc, char * argv[]) {
     rclcpp::init(argc, argv);
-    auto arduino_data_node = std::make_shared<rclcpp::Node>("arduino_data_node");
-
-    imu_pub = arduino_data_node->create_publisher<sensor_msgs::msg::Imu>("Arduino_Data/imu", 1);
-    button_pub = arduino_data_node->create_publisher<std_msgs::msg::String>("Arduino_Data/button", 1);
-
-    Arduino_Data::initialize()
-
-    while (rclcpp::ok())
-    {
-        Arduino_Data::deviceLoop();
-        if(data_ready)
-            Arduino_Data::publishData();
-        rclcpp::spinOnce(arduino_data_node);
+    auto arduino_data_node = make_shared<Arduino_Data>();
+    // arduino_data_node->declare_parameter("portName");
+    
+    while (rclcpp::ok()) {
+        rclcpp::spin_some(arduino_data_node);
     }
-    RCLCPP_WARN("Ros shutdown, proceeding to close the port");
+    
+    
+    RCLCPP_WARN(rclcpp::get_logger("arduino_data_node"), "Ros shutdown, proceeding to close the port");
 
     return 0;
 }
