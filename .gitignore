@@ -6,4 +6,5 @@ src/experiment
 .vscode/
 Dockerfile
 compose.yaml
+altair-os.code-workspace
 
