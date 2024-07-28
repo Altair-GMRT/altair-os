@@ -1,0 +1,22 @@
+[device info]
+model_name  = FSR
+device_type = sensor
+
+[control table]
+# addr | item name                | length | access | memory |   min value   |  max value  | signed
+   0   | model_number             | 2      | R      | EEPROM | 0             | 65535       | N
+   2   | version_of_firmware      | 1      | R      | EEPROM | 0             | 254         | N
+   3   | ID                       | 1      | RW     | EEPROM | 0             | 252         | N
+   4   | baudrate                 | 1      | RW     | EEPROM | 0             | 252         | N
+   5   | return_delay_time        | 1      | RW     | EEPROM | 0             | 254         | N
+   16  | status_return_level      | 1      | RW     | EEPROM | 0             | 2           | N
+   25  | LED                      | 1      | RW     | RAM    | 0             | 1           | N
+   26  | fsr1                     | 2      | R      | RAM    | 0             | 65535       | N
+   28  | fsr2                     | 2      | R      | RAM    | 0             | 65535       | N
+   30  | fsr3                     | 2      | R      | RAM    | 0             | 65535       | N
+   32  | fsr4                     | 2      | R      | RAM    | 0             | 65535       | N
+   34  | fsr_central_x            | 1      | R      | RAM    | 0             | 254         | N
+   35  | fsr_central_y            | 1      | R      | RAM    | 0             | 254         | N
+   42  | present_voltage          | 1      | R      | RAM    | 0             | 255         | N
+   44  | registered               | 1      | R      | RAM    | 0             | 1           | N
+   47  | lock                     | 1      | RW      | RAM    | 0            | 1           | N

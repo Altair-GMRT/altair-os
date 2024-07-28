@@ -1,0 +1,85 @@
+PORTNAME: /dev/ttyUSB0
+BAUDRATE: 1000000
+PROTOCOL: 2.0
+DEFAULT_JOINT: r_sho_pitch
+DEVICE:
+  1:
+    NAME: r_sho_pitch
+    ID: 1
+    MODEL: MX-28
+  2:
+    NAME: l_sho_pitch
+    ID: 2
+    MODEL: MX-28
+  3:  
+    NAME: r_sho_roll
+    ID: 3
+    MODEL: MX-28
+  4:
+    NAME: l_sho_roll
+    ID: 4
+    MODEL: MX-28
+  5:  
+    NAME: r_el
+    ID: 5
+    MODEL: MX-64
+  6:
+    NAME: l_el
+    ID: 6
+    MODEL: MX-64
+  7:  
+    NAME: r_hip_yaw
+    ID: 7
+    MODEL: MX-64
+  8:  
+    NAME: l_hip_yaw
+    ID: 8
+    MODEL: MX-64
+  9:  
+    NAME: r_hip_roll
+    ID: 9
+    MODEL: MX-64
+  10:  
+    NAME: l_hip_roll
+    ID: 10
+    MODEL: MX-64
+  11:  
+    NAME: r_hip_pitch
+    ID: 11
+    MODEL: MX-64
+  12:  
+    NAME: l_hip_pitch
+    ID: 12
+    MODEL: MX-64
+  13:  
+    NAME: r_knee
+    ID: 13
+    MODEL: MX-64
+  14:  
+    NAME: l_knee
+    ID: 14
+    MODEL: MX-64
+  15:  
+    NAME: r_ank_pitch
+    ID: 15
+    MODEL: MX-64
+  16:  
+    NAME: l_ank_pitch
+    ID: 16
+    MODEL: MX-64
+  17:  
+    NAME: r_ank_roll
+    ID: 17
+    MODEL: MX-64
+  18:  
+    NAME: l_ank_roll
+    ID: 18
+    MODEL: MX-64
+  19:  
+    NAME: head_pan
+    ID: 19
+    MODEL: MX-64
+  20:  
+    NAME: head_tilt
+    ID: 20
+    MODEL: MX-64
