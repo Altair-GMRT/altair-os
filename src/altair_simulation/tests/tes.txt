@@ -1,0 +1,5 @@
+ros2 topic pub -1 /joint_states sensor_msgs/msg/JointState "{'header': {'frame_id': 'world'}, name: ['l_hip_yaw', 'l_hip_roll', 'l_hip_pitch', 'l_knee', 'l_ank_pitch', 'l_ank_roll', 'r_hip_yaw', 'r_hip_roll', 'r_hip_pitch', 'r_knee', 'r_ank_pitch', 'r_ank_roll', 'l_sho_pitch', 'l_sho_roll', 'l_el', 'r_sho_pitch', 'r_sho_roll', 'r_el', 'head_pan', 'head_tilt'
+], position: [0.8, 0.6, 0.6, 0.5, 0.5, 0.8, 0.6, 0.6, 0.5, 0.5, 0.8, 0.6, 0.6, 0.5, 0.5, 0.8, 0.6, 0.6, 0.5, 0.5]}
+
+
+ros2 topic pub -1 /set_joint_trajectory trajectory_msgs/msg/JointTrajectory  '{header: {frame_id: world}, joint_names: ['l_hip_yaw', 'l_hip_roll', 'l_hip_pitch', 'l_knee', 'l_ank_pitch', 'l_ank_roll', 'r_hip_yaw', 'r_hip_roll', 'r_hip_pitch', 'r_knee', 'r_ank_pitch', 'r_ank_roll', 'l_sho_pitch', 'l_sho_roll', 'l_el', 'r_sho_pitch', 'r_sho_roll', 'r_el', 'head_pan', 'head_tilt'], points: [  {positions: {0.8, 0.6, 0.6, 0.5, 0.5, 0.8, 0.6, 0.6, 0.5, 0.5, 0.8, 0.6, 0.6, 0.5, 0.5, 0.8, 0.6, 0.6, 0.5, 0.5}}]}'   
