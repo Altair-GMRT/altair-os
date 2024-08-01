@@ -4,8 +4,8 @@ Altair Simulation
 Still a barebone, as there are no walking program
 Note: 
 
-Using available assests provided by robotis op3 and OpenRobotics
-Virtual IMU is working
+Using available assests provided by robotis op3 and OpenRobotics \
+Virtual IMU is working \
 Virtual Camera in progress
 
 Run:
