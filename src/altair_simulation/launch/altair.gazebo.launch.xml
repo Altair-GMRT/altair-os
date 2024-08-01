@@ -1,0 +1,13 @@
+<launch>
+    <arg name="world_sdf_file" default="altair_worlds.sdf" />
+    <arg name="world_sdf_string" default="" />
+    <arg name="container_name" default="altair_gazebo_container" />
+    <arg name="use_composition" default="True" />
+
+    <include file="$(find-pkg ros_gz_sim)/launch/sim.launch.py">
+        <arg name="world_name" value="$(find-pkg altair_simulation)/worlds/$(var world_sdf_file)"/>
+        <arg name="use_composition" value="$(var use_composition)"/>
+        <arg name="container_name" value="$(var container_name)"/>
+    </include>
+
+</launch>

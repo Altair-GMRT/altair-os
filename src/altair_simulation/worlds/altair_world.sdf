@@ -1,0 +1,3263 @@
+<sdf version='1.10'>
+  <world name='altair_world'>
+    <physics name='1ms' type='ignored'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <plugin name='gz::sim::systems::Physics' filename='gz-sim-physics-system'/>
+    <plugin name='gz::sim::systems::UserCommands' filename='gz-sim-user-commands-system'/>
+    <plugin name='gz::sim::systems::SceneBroadcaster' filename='gz-sim-scene-broadcaster-system'/>
+    <plugin name='gz::sim::systems::Sensors' filename='gz-sim-sensors-system'>
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin name='gz::sim::systems::Imu' filename='gz-sim-imu-system'/>
+    <plugin name='gz::sim::systems::LogicalCamera' filename='gz-sim-logical-camera-system'/>
+    <gravity>0 0 -9.8000000000000007</gravity>
+    <magnetic_field>5.5644999999999998e-06 2.2875799999999999e-05 -4.2388400000000002e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <scene>
+      <ambient>0.400000006 0.400000006 0.400000006 1</ambient>
+      <background>0.699999988 0.699999988 0.699999988 1</background>
+      <shadows>true</shadows>
+    </scene>
+    <model name='ground_plane'>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>1 1</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.800000012 0.800000012 1</ambient>
+            <diffuse>0.800000012 0.800000012 0.800000012 1</diffuse>
+            <specular>0.800000012 0.800000012 0.800000012 1</specular>
+          </material>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0 0 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='robotis_op3'>
+      <link name='base'>
+        <inertial>
+          <pose>-0.015010000000000001 0.00012999999999999999 0.065820000000000004 0 0 0</pose>
+          <mass>1.34928</mass>
+          <inertia>
+            <ixx>0.0034049899999999988</ixx>
+            <ixy>5.7199999999999986e-06</ixy>
+            <ixz>-4.256000000000008e-05</ixz>
+            <iyy>0.0029693900000000001</iyy>
+            <iyz>-5.8999999999999943e-07</iyz>
+            <izz>0.0031733099999999999</izz>
+          </inertia>
+        </inertial>
+        <collision name='base_fixed_joint_lump__body_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/body.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='base_fixed_joint_lump__body_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/body.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <self_collide>false</self_collide>
+        <gravity>true</gravity>
+        <sensor name='imu_sensor' type='imu'>
+          <pose>0 0 0 0 0 0</pose>
+          <topic>gazebo/imu</topic>
+          <update_rate>100</update_rate>
+          <enable_metrics>false</enable_metrics>
+          <imu>
+            <orientation_reference_frame>
+              <localization>CUSTOM</localization>
+              <custom_rpy>0 0 0</custom_rpy>
+              <grav_dir_x>1 0 0</grav_dir_x>
+            </orientation_reference_frame>
+            <angular_velocity>
+              <x>
+                <noise type='none'>
+                  <mean>0</mean>
+                  <stddev>0</stddev>
+                  <bias_mean>0</bias_mean>
+                  <bias_stddev>0</bias_stddev>
+                  <dynamic_bias_stddev>0</dynamic_bias_stddev>
+                  <dynamic_bias_correlation_time>0</dynamic_bias_correlation_time>
+                  <precision>0</precision>
+                </noise>
+              </x>
+              <y>
+                <noise type='none'>
+                  <mean>0</mean>
+                  <stddev>0</stddev>
+                  <bias_mean>0</bias_mean>
+                  <bias_stddev>0</bias_stddev>
+                  <dynamic_bias_stddev>0</dynamic_bias_stddev>
+                  <dynamic_bias_correlation_time>0</dynamic_bias_correlation_time>
+                  <precision>0</precision>
+                </noise>
+              </y>
+              <z>
+                <noise type='none'>
+                  <mean>0</mean>
+                  <stddev>0</stddev>
+                  <bias_mean>0</bias_mean>
+                  <bias_stddev>0</bias_stddev>
+                  <dynamic_bias_stddev>0</dynamic_bias_stddev>
+                  <dynamic_bias_correlation_time>0</dynamic_bias_correlation_time>
+                  <precision>0</precision>
+                </noise>
+              </z>
+            </angular_velocity>
+            <linear_acceleration>
+              <x>
+                <noise type='none'>
+                  <mean>0</mean>
+                  <stddev>0</stddev>
+                  <bias_mean>0</bias_mean>
+                  <bias_stddev>0</bias_stddev>
+                  <dynamic_bias_stddev>0</dynamic_bias_stddev>
+                  <dynamic_bias_correlation_time>0</dynamic_bias_correlation_time>
+                  <precision>0</precision>
+                </noise>
+              </x>
+              <y>
+                <noise type='none'>
+                  <mean>0</mean>
+                  <stddev>0</stddev>
+                  <bias_mean>0</bias_mean>
+                  <bias_stddev>0</bias_stddev>
+                  <dynamic_bias_stddev>0</dynamic_bias_stddev>
+                  <dynamic_bias_correlation_time>0</dynamic_bias_correlation_time>
+                  <precision>0</precision>
+                </noise>
+              </y>
+              <z>
+                <noise type='none'>
+                  <mean>0</mean>
+                  <stddev>0</stddev>
+                  <bias_mean>0</bias_mean>
+                  <bias_stddev>0</bias_stddev>
+                  <dynamic_bias_stddev>0</dynamic_bias_stddev>
+                  <dynamic_bias_correlation_time>0</dynamic_bias_correlation_time>
+                  <precision>0</precision>
+                </noise>
+              </z>
+            </linear_acceleration>
+            <enable_orientation>true</enable_orientation>
+          </imu>
+        </sensor>
+        <pose>0 0 0 0 0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='head_pan' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>base</parent>
+        <child>head_pan_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='head_pan_link'>
+        <pose>-0.00099999999999988987 0 0.13650000000000001 0 0 0</pose>
+        <inertial>
+          <pose>0.00233 0 0.0082299999999999995 0 0 0</pose>
+          <mass>0.01176</mass>
+          <inertia>
+            <ixx>3.9700000000000001e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>-3.1e-07</ixz>
+            <iyy>1.6500000000000001e-06</iyy>
+            <iyz>0</iyz>
+            <izz>3.8700000000000002e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='head_pan_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/h1.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='head_pan_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/h1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <self_collide>false</self_collide>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='head_tilt' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>head_pan_link</parent>
+        <child>head_tilt_link</child>
+        <axis>
+          <xyz>0 -1 0</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='head_tilt_link'>
+        <pose>0.009000000000000119 0.019 0.16499999999999998 0 0 0</pose>
+        <inertial>
+          <pose>0.0023 -0.018630000000000001 0.027699999999999999 0 0 0</pose>
+          <mass>0.13630999999999999</mass>
+          <inertia>
+            <ixx>0.00010611999999999999</ixx>
+            <ixy>1.1000000000000001e-07</ixy>
+            <ixz>-9.0999999999999993e-06</ixz>
+            <iyy>8.721e-05</iyy>
+            <iyz>8.4e-07</iyz>
+            <izz>4.5290000000000002e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='head_tilt_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/h2.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='head_tilt_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/h2.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <self_collide>false</self_collide>
+        <sensor name='camera' type='camera'>
+          <pose>0.014250000000000001 -0.019 0.049750000000000003 0 0 0</pose>
+          <topic>gazebo/camera/image_raw</topic>
+          <update_rate>30</update_rate>
+          <enable_metrics>false</enable_metrics>
+          <camera name='__default__'>
+            <pose>0 0 0 0 0 0</pose>
+            <horizontal_fov>1.0123</horizontal_fov>
+            <image>
+              <width>320</width>
+              <height>200</height>
+              <format>RGB_INT8</format>
+              <anti_aliasing>4</anti_aliasing>
+            </image>
+            <camera_info_topic>gazebo/camera/camera_info</camera_info_topic>
+            <trigger_topic></trigger_topic>
+            <triggered>false</triggered>
+            <clip>
+              <near>0.001</near>
+              <far>100</far>
+            </clip>
+            <save enabled='false'>
+              <path>__default__</path>
+            </save>
+            <visibility_mask>4294967295</visibility_mask>
+            <noise>
+              <type>none</type>
+              <mean>0</mean>
+              <stddev>0</stddev>
+            </noise>
+            <distortion>
+              <k1>0</k1>
+              <k2>0</k2>
+              <k3>0</k3>
+              <p1>0</p1>
+              <p2>0</p2>
+              <center>0.5 0.5</center>
+            </distortion>
+            <lens>
+              <type>stereographic</type>
+              <scale_to_hfov>true</scale_to_hfov>
+              <cutoff_angle>1.5707963267948966</cutoff_angle>
+              <env_texture_size>256</env_texture_size>
+            </lens>
+            <optical_frame_id></optical_frame_id>
+          </camera>
+        </sensor>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='l_hip_yaw' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>base</parent>
+        <child>l_hip_yaw_link</child>
+        <axis>
+          <xyz>0 0 -1</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='l_hip_yaw_link'>
+        <pose>0 0.035000000000000003 0 0 0 0</pose>
+        <inertial>
+          <pose>-0.00157 0 -0.0077400000000000004 0 0 0</pose>
+          <mass>0.011809999999999999</mass>
+          <inertia>
+            <ixx>1.5099999999999999e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>1e-08</ixz>
+            <iyy>4.3000000000000003e-06</iyy>
+            <iyz>0</iyz>
+            <izz>4.1200000000000004e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='l_hip_yaw_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/ll1.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='l_hip_yaw_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/ll1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <self_collide>false</self_collide>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='l_hip_roll' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>l_hip_yaw_link</parent>
+        <child>l_hip_roll_link</child>
+        <axis>
+          <xyz>-1 0 0</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='l_hip_roll_link'>
+        <pose>-0.024000000000000021 0.035000000000000003 -0.028500000000000025 0 0 0</pose>
+        <inertial>
+          <pose>0.0038800000000000002 0.00027999999999999998 -0.01214 0 0 0</pose>
+          <mass>0.17885999999999999</mass>
+          <inertia>
+            <ixx>4.6610000000000003e-05</ixx>
+            <ixy>-1.0100000000000001e-06</ixy>
+            <ixz>-1.31e-06</ixz>
+            <iyy>0.00012522999999999999</iyy>
+            <iyz>-5.9999999999999995e-08</iyz>
+            <izz>0.00010857</izz>
+          </inertia>
+        </inertial>
+        <collision name='l_hip_roll_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/ll2.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='l_hip_roll_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/ll2.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <self_collide>false</self_collide>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='l_hip_pitch' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>l_hip_roll_link</parent>
+        <child>l_hip_pitch_link</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='l_hip_pitch_link'>
+        <pose>9.9999999999988987e-05 0.054000000000000006 -0.028500000000000025 0 0 0</pose>
+        <inertial>
+          <pose>0.00059000000000000003 -0.019009999999999999 -0.084080000000000002 0 0 0</pose>
+          <mass>0.11543</mass>
+          <inertia>
+            <ixx>0.00010499</ixx>
+            <ixy>-1e-08</ixy>
+            <ixz>-7.0999999999999998e-07</ixz>
+            <iyy>9.6130000000000003e-05</iyy>
+            <iyz>3.5300000000000001e-06</iyz>
+            <izz>2.493e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='l_hip_pitch_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/ll3.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='l_hip_pitch_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/ll3.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <self_collide>false</self_collide>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='l_knee' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>l_hip_pitch_link</parent>
+        <child>l_knee_link</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='l_knee_link'>
+        <pose>9.9999999999988987e-05 0.054000000000000006 -0.13865000000000002 0 0 0</pose>
+        <inertial>
+          <pose>0 -0.021510000000000001 -0.055 0 0 0</pose>
+          <mass>0.040149999999999998</mass>
+          <inertia>
+            <ixx>3.7150000000000002e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.7509999999999999e-05</iyy>
+            <iyz>0</iyz>
+            <izz>1.5109999999999999e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='l_knee_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/ll4.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='l_knee_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/ll4.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <self_collide>false</self_collide>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='l_ank_pitch' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>l_knee_link</parent>
+        <child>l_ank_pitch_link</child>
+        <axis>
+          <xyz>0 -1 0</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='l_ank_pitch_link'>
+        <pose>9.9999999999988987e-05 0.054000000000000006 -0.24865000000000004 0 0 0</pose>
+        <inertial>
+          <pose>-0.020219999999999998 -0.018720000000000001 0.01214 0 0 0</pose>
+          <mass>0.17885999999999999</mass>
+          <inertia>
+            <ixx>4.6610000000000003e-05</ixx>
+            <ixy>-1.0100000000000001e-06</ixy>
+            <ixz>1.31e-06</ixz>
+            <iyy>0.00012522999999999999</iyy>
+            <iyz>5.9999999999999995e-08</iyz>
+            <izz>0.00010857</izz>
+          </inertia>
+        </inertial>
+        <collision name='l_ank_pitch_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/ll5.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='l_ank_pitch_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/ll5.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <self_collide>false</self_collide>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='l_ank_roll' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>l_ank_pitch_link</parent>
+        <child>l_ank_roll_link</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='l_ank_roll_link'>
+        <pose>-0.024000000000000021 0.035000000000000003 -0.24865000000000004 0 0 0</pose>
+        <inertial>
+          <pose>0.023730000000000001 0.010370000000000001 -0.0276 0 0 0</pose>
+          <mass>0.069339999999999999</mass>
+          <inertia>
+            <ixx>4.0339999999999997e-05</ixx>
+            <ixy>-1.9000000000000001e-07</ixy>
+            <ixz>1.1999999999999999e-07</ixz>
+            <iyy>7.8739999999999995e-05</iyy>
+            <iyz>1.0100000000000001e-06</iyz>
+            <izz>0.00011579</izz>
+          </inertia>
+        </inertial>
+        <collision name='l_ank_roll_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/ll6.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>100000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.5</mu>
+                <mu2>1.5</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='l_ank_roll_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/ll6.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='l_sho_pitch' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>base</parent>
+        <child>l_sho_pitch_link</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='l_sho_pitch_link'>
+        <pose>-0.00099999999999988987 0.059999999999999998 0.11099999999999999 0 0 0</pose>
+        <inertial>
+          <pose>0 0.0082299999999999995 -0.00233 0 0 0</pose>
+          <mass>0.01176</mass>
+          <inertia>
+            <ixx>1.6500000000000001e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>3.8700000000000002e-06</iyy>
+            <iyz>3.1e-07</iyz>
+            <izz>3.9700000000000001e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='l_sho_pitch_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/la1.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='l_sho_pitch_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/la1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <self_collide>false</self_collide>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='l_sho_roll' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>l_sho_pitch_link</parent>
+        <child>l_sho_roll_link</child>
+        <axis>
+          <xyz>-1 0 0</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='l_sho_roll_link'>
+        <pose>0.018000000000000016 0.088499999999999995 0.10099999999999998 0 0 0</pose>
+        <inertial>
+          <pose>-0.018440000000000002 0.04514 0.00027999999999999998 0 0 0</pose>
+          <mass>0.17757999999999999</mass>
+          <inertia>
+            <ixx>0.00022803999999999999</ixx>
+            <ixy>-1e-08</ixy>
+            <ixz>2.9999999999999997e-08</ixz>
+            <iyy>3.042e-05</iyy>
+            <iyz>5.8999999999999996e-07</iyz>
+            <izz>0.00023473999999999999</izz>
+          </inertia>
+        </inertial>
+        <collision name='l_sho_roll_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/la2.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='l_sho_roll_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/la2.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <self_collide>false</self_collide>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='l_el' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>l_sho_roll_link</parent>
+        <child>l_el_link</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='l_el_link'>
+        <pose>0.018000000000000016 0.1789 0.10089999999999999 0 0 0</pose>
+        <inertial>
+          <pose>-0.019 0.070330000000000004 0.0038 0 0 0</pose>
+          <mass>0.041270000000000001</mass>
+          <inertia>
+            <ixx>6.1959999999999996e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1.2310000000000001e-05</iyy>
+            <iyz>-3.72e-06</iyz>
+            <izz>6.8540000000000004e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='l_el_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/la3.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='l_el_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/la3.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <self_collide>false</self_collide>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='r_hip_yaw' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>base</parent>
+        <child>r_hip_yaw_link</child>
+        <axis>
+          <xyz>0 0 -1</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='r_hip_yaw_link'>
+        <pose>0 -0.035000000000000003 0 0 0 0</pose>
+        <inertial>
+          <pose>-0.00157 0 -0.0077400000000000004 0 0 0</pose>
+          <mass>0.011809999999999999</mass>
+          <inertia>
+            <ixx>1.5099999999999999e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>1e-08</ixz>
+            <iyy>4.3000000000000003e-06</iyy>
+            <iyz>0</iyz>
+            <izz>4.1200000000000004e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='r_hip_yaw_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/rl1.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='r_hip_yaw_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/rl1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <self_collide>false</self_collide>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='r_hip_roll' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>r_hip_yaw_link</parent>
+        <child>r_hip_roll_link</child>
+        <axis>
+          <xyz>-1 0 0</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='r_hip_roll_link'>
+        <pose>-0.024000000000000021 -0.035000000000000003 -0.028500000000000025 0 0 0</pose>
+        <inertial>
+          <pose>0.0038800000000000002 -0.00027999999999999998 -0.01214 0 0 0</pose>
+          <mass>0.17885999999999999</mass>
+          <inertia>
+            <ixx>4.6610000000000003e-05</ixx>
+            <ixy>1.0100000000000001e-06</ixy>
+            <ixz>-1.31e-06</ixz>
+            <iyy>0.00012522999999999999</iyy>
+            <iyz>5.9999999999999995e-08</iyz>
+            <izz>0.00010857</izz>
+          </inertia>
+        </inertial>
+        <collision name='r_hip_roll_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/rl2.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='r_hip_roll_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/rl2.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <self_collide>false</self_collide>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='r_hip_pitch' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>r_hip_roll_link</parent>
+        <child>r_hip_pitch_link</child>
+        <axis>
+          <xyz>0 -1 0</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='r_hip_pitch_link'>
+        <pose>9.9999999999988987e-05 -0.054000000000000006 -0.028500000000000025 0 0 0</pose>
+        <inertial>
+          <pose>0.00059000000000000003 0.019009999999999999 -0.084080000000000002 0 0 0</pose>
+          <mass>0.11543</mass>
+          <inertia>
+            <ixx>0.00010499</ixx>
+            <ixy>1e-08</ixy>
+            <ixz>-7.0999999999999998e-07</ixz>
+            <iyy>9.6130000000000003e-05</iyy>
+            <iyz>-3.5300000000000001e-06</iyz>
+            <izz>2.493e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='r_hip_pitch_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/rl3.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='r_hip_pitch_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/rl3.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <self_collide>false</self_collide>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='r_knee' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>r_hip_pitch_link</parent>
+        <child>r_knee_link</child>
+        <axis>
+          <xyz>0 -1 0</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='r_knee_link'>
+        <pose>9.9999999999988987e-05 -0.054000000000000006 -0.13865000000000002 0 0 0</pose>
+        <inertial>
+          <pose>0 0.021510000000000001 -0.055 0 0 0</pose>
+          <mass>0.040149999999999998</mass>
+          <inertia>
+            <ixx>3.7150000000000002e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.7509999999999999e-05</iyy>
+            <iyz>0</iyz>
+            <izz>1.5109999999999999e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='r_knee_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/rl4.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='r_knee_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/rl4.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <self_collide>false</self_collide>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='r_ank_pitch' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>r_knee_link</parent>
+        <child>r_ank_pitch_link</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='r_ank_pitch_link'>
+        <pose>9.9999999999988987e-05 -0.054000000000000006 -0.24865000000000004 0 0 0</pose>
+        <inertial>
+          <pose>-0.020219999999999998 0.018720000000000001 0.01214 0 0 0</pose>
+          <mass>0.17885999999999999</mass>
+          <inertia>
+            <ixx>4.6610000000000003e-05</ixx>
+            <ixy>1.0100000000000001e-06</ixy>
+            <ixz>1.31e-06</ixz>
+            <iyy>0.00012522999999999999</iyy>
+            <iyz>-5.9999999999999995e-08</iyz>
+            <izz>0.00010857</izz>
+          </inertia>
+        </inertial>
+        <collision name='r_ank_pitch_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/rl5.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='r_ank_pitch_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/rl5.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <self_collide>false</self_collide>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='r_ank_roll' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>r_ank_pitch_link</parent>
+        <child>r_ank_roll_link</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='r_ank_roll_link'>
+        <pose>-0.024000000000000021 -0.035000000000000003 -0.24865000000000004 0 0 0</pose>
+        <inertial>
+          <pose>0.023730000000000001 -0.010370000000000001 -0.0276 0 0 0</pose>
+          <mass>0.069339999999999999</mass>
+          <inertia>
+            <ixx>4.0339999999999997e-05</ixx>
+            <ixy>1.9000000000000001e-07</ixy>
+            <ixz>1.1999999999999999e-07</ixz>
+            <iyy>7.8739999999999995e-05</iyy>
+            <iyz>-1.0100000000000001e-06</iyz>
+            <izz>0.00011579</izz>
+          </inertia>
+        </inertial>
+        <collision name='r_ank_roll_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/rl6.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>100000</kp>
+                <kd>100</kd>
+                <max_vel>1</max_vel>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1.5</mu>
+                <mu2>1.5</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='r_ank_roll_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/rl6.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='r_sho_pitch' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>base</parent>
+        <child>r_sho_pitch_link</child>
+        <axis>
+          <xyz>0 -1 0</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='r_sho_pitch_link'>
+        <pose>-0.00099999999999988987 -0.059999999999999998 0.11099999999999999 0 0 0</pose>
+        <inertial>
+          <pose>0 -0.0082299999999999995 -0.00233 0 0 0</pose>
+          <mass>0.01176</mass>
+          <inertia>
+            <ixx>1.6500000000000001e-06</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>3.8700000000000002e-06</iyy>
+            <iyz>-3.1e-07</iyz>
+            <izz>3.9700000000000001e-06</izz>
+          </inertia>
+        </inertial>
+        <collision name='r_sho_pitch_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/ra1.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='r_sho_pitch_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/ra1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <self_collide>false</self_collide>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='r_sho_roll' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>r_sho_pitch_link</parent>
+        <child>r_sho_roll_link</child>
+        <axis>
+          <xyz>-1 0 0</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='r_sho_roll_link'>
+        <pose>0.018000000000000016 -0.088499999999999995 0.10099999999999998 0 0 0</pose>
+        <inertial>
+          <pose>-0.018440000000000002 -0.04514 0.00027999999999999998 0 0 0</pose>
+          <mass>0.17757999999999999</mass>
+          <inertia>
+            <ixx>0.00022803999999999999</ixx>
+            <ixy>1e-08</ixy>
+            <ixz>2.9999999999999997e-08</ixz>
+            <iyy>3.042e-05</iyy>
+            <iyz>-5.8999999999999996e-07</iyz>
+            <izz>0.00023473999999999999</izz>
+          </inertia>
+        </inertial>
+        <collision name='r_sho_roll_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/ra2.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='r_sho_roll_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/ra2.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <self_collide>false</self_collide>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='r_el' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>r_sho_roll_link</parent>
+        <child>r_el_link</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-2.8274333882308138</lower>
+            <upper>2.8274333882308138</upper>
+            <effort>1000</effort>
+            <velocity>100</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0.10000000000000001</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='r_el_link'>
+        <pose>0.018000000000000016 -0.1789 0.10089999999999999 0 0 0</pose>
+        <inertial>
+          <pose>-0.019 -0.070330000000000004 0.0038 0 0 0</pose>
+          <mass>0.041270000000000001</mass>
+          <inertia>
+            <ixx>6.1959999999999996e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1.2310000000000001e-05</iyy>
+            <iyz>3.72e-06</iyz>
+            <izz>6.8540000000000004e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='r_el_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/ra3.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='r_el_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///src/altair_simulation/meshes/ra3.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <diffuse>0.75000006 0.75000006 0.75000006 1</diffuse>
+            <ambient>0.75000006 0.75000006 0.75000006 1</ambient>
+          </material>
+        </visual>
+        <self_collide>false</self_collide>
+        <enable_wind>false</enable_wind>
+      </link>
+      <frame name='imu_fixed' attached_to='body_link'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='imu_link' attached_to='imu_fixed'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='base_fixed' attached_to='base'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='body_link' attached_to='base_fixed'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='cam' attached_to='head_tilt_link'>
+        <pose>0.014250000000000001 -0.019 0.049750000000000003 -1.5707963267948959 -5.5511151231257827e-17 -1.5707963267948959</pose>
+      </frame>
+      <frame name='cam_link' attached_to='cam'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='cam_gazebo' attached_to='head_tilt_link'>
+        <pose>0.014250000000000001 -0.019 0.049750000000000003 0 0 0</pose>
+      </frame>
+      <frame name='cam_gazebo_link' attached_to='cam_gazebo'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <pose>-1.0974200963973999 0 0.28999999165534973 0 0 0</pose>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='field'>
+      <static>true</static>
+      <link name='field'>
+        <pose>0 0 0.01 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>10.4 7.4000000000000004</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='carpet'>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>10.4 7.4000000000000004</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0 1 0 1</ambient>
+            <diffuse>0 1 0 1</diffuse>
+          </material>
+        </visual>
+        <visual name='sideline_1'>
+          <pose>0 3 0.010999999999999999 0 0 0</pose>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>9.0500000000000007 0.050000000000000003</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+          </material>
+        </visual>
+        <visual name='sideline_2'>
+          <pose>0 -3 0.010999999999999999 0 0 0</pose>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>9.0500000000000007 0.050000000000000003</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+          </material>
+        </visual>
+        <visual name='endline_1'>
+          <pose>-4.5 0 0.010999999999999999 0 0 0</pose>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.050000000000000003 6.0499999999999998</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+          </material>
+        </visual>
+        <visual name='endline_2'>
+          <pose>4.5 0 0.010999999999999999 0 0 0</pose>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.050000000000000003 6.0499999999999998</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+          </material>
+        </visual>
+        <visual name='halfway_line'>
+          <pose>0 0 0.010999999999999999 0 0 0</pose>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.050000000000000003 6.0499999999999998</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+          </material>
+        </visual>
+        <visual name='area_1_line_a'>
+          <pose>-3.8999999999999999 0 0.010999999999999999 0 0 0</pose>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.050000000000000003 2.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+          </material>
+        </visual>
+        <visual name='area_2_line_a'>
+          <pose>-4.2000000000000002 1.1000000000000001 0.010999999999999999 0 0 0</pose>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.65000000000000002 0.050000000000000003</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+          </material>
+        </visual>
+        <visual name='area_3_line_a'>
+          <pose>-4.2000000000000002 -1.1000000000000001 0.010999999999999999 0 0 0</pose>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.65000000000000002 0.050000000000000003</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+          </material>
+        </visual>
+        <visual name='area_1_line_b'>
+          <pose>3.8999999999999999 0 0.010999999999999999 0 0 0</pose>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.050000000000000003 2.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+          </material>
+        </visual>
+        <visual name='area_2_line_b'>
+          <pose>4.2000000000000002 1.1000000000000001 0.010999999999999999 0 0 0</pose>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.65000000000000002 0.050000000000000003</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+          </material>
+        </visual>
+        <visual name='area_3_line_b'>
+          <pose>4.2000000000000002 -1.1000000000000001 0.010999999999999999 0 0 0</pose>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.65000000000000002 0.050000000000000003</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+          </material>
+        </visual>
+        <visual name='penalty_a'>
+          <pose>-3.2000000000000002 0 0.01 0 0 0</pose>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <cylinder>
+              <radius>0.050000000000000003</radius>
+              <length>0.00050000000000000001</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+          </material>
+        </visual>
+        <visual name='penalty_b'>
+          <pose>3.2000000000000002 0 0.01 0 0 0</pose>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <cylinder>
+              <radius>0.050000000000000003</radius>
+              <length>0.00050000000000000001</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+          </material>
+        </visual>
+        <visual name='center_point'>
+          <pose>0 0 0.01 0 0 0</pose>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <cylinder>
+              <radius>0.050000000000000003</radius>
+              <length>0.00050000000000000001</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+          </material>
+        </visual>
+        <visual name='center_circle'>
+          <pose>0 0 0.0050000000000000001 0 0 0</pose>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <mesh>
+              <scale>0.5 0.5 0.75</scale>
+              <uri>file:///src/altair_simulation/models/RoboCup_Field/meshes/circle.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0 0 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='Goal1'>
+      <static>true</static>
+      <link name='left_post'>
+        <pose>0 0.80000000000000004 0.45000000000000001 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.050000000000000003</radius>
+              <length>0.90000000000000002</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.050000000000000003</radius>
+              <length>0.90000000000000002</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.972500026 0.952899992 0.207800001 1</ambient>
+            <diffuse>0.972500026 0.952899992 0.207800001 1</diffuse>
+            <specular>0.972500026 0.952899992 0.207800001 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='left_support_horiz_lower'>
+        <pose>0.24000000000000021 0.80000000000000004 0.01 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.38 0.02 0.02</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.38 0.02 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='left_support_horiz_upper'>
+        <pose>0.24000000000000021 0.80000000000000004 0.79000000000000004 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.38 0.02 0.02</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.38 0.02 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='left_support_vertical'>
+        <pose>0.44000000000000039 0.80000000000000004 0.40000000000000002 3.1415926535897931 1.5707926536057681 3.1415926535897931</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.80000000000000004 0.02 0.02</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.80000000000000004 0.02 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='right_support_horiz_lower'>
+        <pose>0.24000000000000021 -0.80000000000000004 0.01 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.38 0.02 0.02</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.38 0.02 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='right_support_horiz_upper'>
+        <pose>0.24000000000000021 -0.80000000000000004 0.79000000000000004 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.38 0.02 0.02</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.38 0.02 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='right_support_vertical'>
+        <pose>0.44000000000000039 -0.80000000000000004 0.40000000000000002 3.1415926535897931 1.5707926536057681 3.1415926535897931</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.80000000000000004 0.02 0.02</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.80000000000000004 0.02 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='center_support_horiz_lower'>
+        <pose>0.44000000000000039 0 0.01 3.1415926535897931 1.5707926536057681 3.1415926535897931</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.02 1.5800000000000001 0.02</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.02 1.5800000000000001 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='center_support_horiz_upper'>
+        <pose>0.44000000000000039 0 0.79000000000000004 3.1415926535897931 1.5707926536057681 3.1415926535897931</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.02 1.5800000000000001 0.02</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.02 1.5800000000000001 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='right_post'>
+        <pose>0 -0.80000000000000004 0.45000000000000001 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.050000000000000003</radius>
+              <length>0.90000000000000002</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.050000000000000003</radius>
+              <length>0.90000000000000002</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.972500026 0.952899992 0.207800001 1</ambient>
+            <diffuse>0.972500026 0.952899992 0.207800001 1</diffuse>
+            <specular>0.972500026 0.952899992 0.207800001 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='crossbar'>
+        <pose>0 0 0.84999999999999998 1.5699999999995324 1.5699999999998482 -4.8796311025015653e-13</pose>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.050000000000000003</radius>
+              <length>1.5</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.050000000000000003</radius>
+              <length>1.5</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.972500026 0.952899992 0.207800001 1</ambient>
+            <diffuse>0.972500026 0.952899992 0.207800001 1</diffuse>
+            <specular>0.972500026 0.952899992 0.207800001 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='center_net'>
+        <pose>0.44000000000000039 0 0.40000000000000002 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.01 1.6000000000000001 0.80000000000000004</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.01 1.6000000000000001 0.80000000000000004</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file:///src/altair_simulation/models/RoboCup_Goal/model.sdf</uri>
+              <name>RoboCup/Net</name>
+            </script>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='left_net'>
+        <pose>0.24000000000000021 0.80000000000000004 0.40000000000000002 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.38 0.01 0.76000000000000001</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.38 0.01 0.76000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file:///src/altair_simulation/models/RoboCup_Goal/model.sdf</uri>
+              <name>RoboCup/Net</name>
+            </script>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='right_net'>
+        <pose>0.24000000000000021 -0.80000000000000004 0.40000000000000002 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.38 0.01 0.76000000000000001</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.38 0.01 0.76000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file:///src/altair_simulation/models/RoboCup_Goal/model.sdf</uri>
+              <name>RoboCup/Net</name>
+            </script>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>4.5240178108215332 0 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='Goal2'>
+      <static>true</static>
+      <link name='left_post'>
+        <pose>0 0.80000000000000004 0.45000000000000001 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.050000000000000003</radius>
+              <length>0.90000000000000002</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.050000000000000003</radius>
+              <length>0.90000000000000002</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.972500026 0.952899992 0.207800001 1</ambient>
+            <diffuse>0.972500026 0.952899992 0.207800001 1</diffuse>
+            <specular>0.972500026 0.952899992 0.207800001 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='left_support_horiz_lower'>
+        <pose>0.24000034618732435 0.79999998902457248 0.010000000000000002 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.38 0.02 0.02</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.38 0.02 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='left_support_horiz_upper'>
+        <pose>0.24000034618732435 0.79999998902457248 0.79000000000000004 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.38 0.02 0.02</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.38 0.02 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='left_support_vertical'>
+        <pose>0.4400006346767622 0.79999997987838234 0.40000000000000002 3.1415926531823835 1.5707926536359933 3.1415926531823861</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.80000000000000004 0.02 0.02</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.80000000000000004 0.02 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='right_support_horiz_lower'>
+        <pose>0.24000027301780413 -0.80000231889093154 0.010000000000000002 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.38 0.02 0.02</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.38 0.02 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='right_support_horiz_upper'>
+        <pose>0.24000027301780413 -0.80000231889093154 0.79000000000000004 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.38 0.02 0.02</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.38 0.02 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='right_support_vertical'>
+        <pose>0.44000056150724465 -0.80000232803712157 0.40000000000000002 3.1415926531823835 1.5707926536359933 3.1415926531823861</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.80000000000000004 0.02 0.02</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.80000000000000004 0.02 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='center_support_horiz_lower'>
+        <pose>0.44000059809200209 -1.1740793695591556e-06 0.010000000000000002 3.1415926531823835 1.5707926536359933 3.1415926531823861</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.02 1.5800000000000001 0.02</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.02 1.5800000000000001 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='center_support_horiz_upper'>
+        <pose>0.44000059809200209 -1.1740793695591556e-06 0.79000000000000004 3.1415926531823835 1.5707926536359933 3.1415926531823861</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.02 1.5800000000000001 0.02</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.02 1.5800000000000001 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>1 1 1 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='right_post'>
+        <pose>-7.316952022051737e-08 -0.80000230791550386 0.45000000000000001 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.050000000000000003</radius>
+              <length>0.90000000000000002</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.050000000000000003</radius>
+              <length>0.90000000000000002</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.972500026 0.952899992 0.207800001 1</ambient>
+            <diffuse>0.972500026 0.952899992 0.207800001 1</diffuse>
+            <specular>0.972500026 0.952899992 0.207800001 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='crossbar'>
+        <pose>-3.6584760110258685e-08 -1.153957751964807e-06 0.8500000000000002 1.5700000000009968 1.5700000000006846 -1.1593083348653668e-06</pose>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.050000000000000003</radius>
+              <length>1.5</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.050000000000000003</radius>
+              <length>1.5</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.972500026 0.952899992 0.207800001 1</ambient>
+            <diffuse>0.972500026 0.952899992 0.207800001 1</diffuse>
+            <specular>0.972500026 0.952899992 0.207800001 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='center_net'>
+        <pose>0.44000059809200209 -1.1740793695591556e-06 0.40000000000000002 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.01 1.6000000000000001 0.80000000000000004</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.01 1.6000000000000001 0.80000000000000004</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file:///src/altair_simulation/models/RoboCup_Goal/model.sdf</uri>
+              <name>RoboCup/Net</name>
+            </script>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='left_net'>
+        <pose>0.24000034618732435 0.79999998902457248 0.40000000000000002 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.38 0.01 0.76000000000000001</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.38 0.01 0.76000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file:///src/altair_simulation/models/RoboCup_Goal/model.sdf</uri>
+              <name>RoboCup/Net</name>
+            </script>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name='right_net'>
+        <pose>0.24000027301780413 -0.80000231889093154 0.40000000000000002 0 0 0</pose>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.38 0.01 0.76000000000000001</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.38 0.01 0.76000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file:///src/altair_simulation/models/RoboCup_Goal/model.sdf</uri>
+              <name>RoboCup/Net</name>
+            </script>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>-4.5 0 0 0 0 -3.1000000000000001</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='ball'>
+      <static>false</static>
+      <link name='soccer_ball_link'>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <mass>0.025999999999999999</mass>
+          <inertia>
+            <ixx>1.664e-05</ixx>
+            <iyy>1.664e-05</iyy>
+            <izz>1.664e-05</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+          <pose>0 0 0 0 0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <sphere>
+              <radius>0.40000000000000002</radius>
+            </sphere>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <scale>0.040000000000000001 0.040000000000000001 0.040000000000000001</scale>
+              <uri>file:///src/altair_simulation/models/RoboCup_Ball/meshes/ball.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>-0.011183159425854683 0 0.085068702697753906 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <light name='sun' type='directional'>
+      <pose>0 0 10 0 0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>-0.5 0.10000000000000001 -0.90000000000000002</direction>
+      <diffuse>0.800000012 0.800000012 0.800000012 1</diffuse>
+      <specular>0.200000003 0.200000003 0.200000003 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <linear>0.01</linear>
+        <constant>0.90000000000000002</constant>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+  </world>
+</sdf>
