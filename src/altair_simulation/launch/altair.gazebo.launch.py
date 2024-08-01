@@ -14,6 +14,33 @@ import xacro
 
 
 def generate_launch_description():
-    
-    
-    return launchDescriptionObject
+    # Path to the world file
+    gazebo_world_path = os.path.join(
+        get_package_share_directory('altair_simulation'),
+        'worlds',
+        'altair_world.sdf'
+    )
+
+    # Path to the robot model file
+    # already added in the altair_world.sdf file
+    # robot_model_path = os.path.join(
+    #     get_package_share_directory('altair_simulation'),
+    #     'urdf',
+    #     'robot.urdf'
+    # )
+
+    return LaunchDescription([
+        # Launch Gazebo simulator
+        ExecuteProcess(
+            cmd=['gz', 'sim', '-r', gazebo_world_path],
+            output='screen'
+        ),
+        
+        # Spawn a robot model
+        # Node(
+        #     package='ros_gz_sim',
+        #     executable='create',
+        #     arguments=['-name', 'my_robot', '-file', robot_model_path],
+        #     output='screen'
+        # )
+    ])

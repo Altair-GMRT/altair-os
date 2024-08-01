@@ -22,6 +22,7 @@ find_package(gz-msgs REQUIRED)
 find_package(gz_sim_vendor REQUIRED)
 find_package(gz-sim REQUIRED)
 find_package(xacro REQUIRED)
+find_package(ros_gz_sim REQUIRED)
 # Needed in launch/gz_sim.launch.py.in
 # set(GZ_SIM_VER ${gz-sim_VERSION_MAJOR})
 

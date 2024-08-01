@@ -89,7 +89,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/body.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/body.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -109,7 +109,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/body.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/body.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -122,7 +122,7 @@
         <sensor name='imu_sensor' type='imu'>
           <pose>0 0 0 0 0 0</pose>
           <topic>gazebo/imu</topic>
-          <update_rate>1</update_rate>
+          <update_rate>100</update_rate>
           <enable_metrics>false</enable_metrics>
           <imu>
             <orientation_reference_frame>
@@ -247,7 +247,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/h1.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/h1.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -267,7 +267,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/h1.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/h1.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -319,7 +319,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/h2.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/h2.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -339,7 +339,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/h2.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/h2.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -438,7 +438,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/ll1.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/ll1.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -458,7 +458,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/ll1.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/ll1.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -510,7 +510,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/ll2.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/ll2.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -530,7 +530,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/ll2.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/ll2.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -582,7 +582,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/ll3.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/ll3.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -602,7 +602,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/ll3.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/ll3.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -654,7 +654,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/ll4.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/ll4.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -674,7 +674,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/ll4.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/ll4.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -726,7 +726,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/ll5.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/ll5.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -746,7 +746,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/ll5.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/ll5.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -798,7 +798,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/ll6.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/ll6.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -824,7 +824,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/ll6.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/ll6.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -875,7 +875,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/la1.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/la1.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -895,7 +895,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/la1.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/la1.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -947,7 +947,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/la2.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/la2.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -967,7 +967,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/la2.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/la2.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -1019,7 +1019,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/la3.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/la3.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -1039,7 +1039,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/la3.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/la3.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -1091,7 +1091,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/rl1.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/rl1.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -1111,7 +1111,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/rl1.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/rl1.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -1163,7 +1163,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/rl2.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/rl2.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -1183,7 +1183,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/rl2.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/rl2.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -1235,7 +1235,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/rl3.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/rl3.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -1255,7 +1255,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/rl3.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/rl3.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -1307,7 +1307,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/rl4.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/rl4.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -1327,7 +1327,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/rl4.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/rl4.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -1379,7 +1379,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/rl5.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/rl5.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -1399,7 +1399,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/rl5.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/rl5.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -1451,7 +1451,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/rl6.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/rl6.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -1477,7 +1477,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/rl6.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/rl6.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -1528,7 +1528,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/ra1.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/ra1.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -1548,7 +1548,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/ra1.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/ra1.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -1600,7 +1600,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/ra2.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/ra2.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -1620,7 +1620,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/ra2.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/ra2.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -1672,7 +1672,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/ra3.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/ra3.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -1692,7 +1692,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>file:///../meshes/ra3.stl</uri>
+              <uri>file:///src/altair_simulation/meshes/ra3.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -1968,7 +1968,7 @@
           <geometry>
             <mesh>
               <scale>0.5 0.5 0.75</scale>
-              <uri>file:///../models/RoboCup_Field/meshes/circle.dae</uri>
+              <uri>file:///src/altair_simulation/models/RoboCup_Field/meshes/circle.dae</uri>
             </mesh>
           </geometry>
           <material>
@@ -2487,7 +2487,7 @@
           </geometry>
           <material>
             <script>
-              <uri>file:///../models/RoboCup_Goal/model.sdf</uri>
+              <uri>file:///src/altair_simulation/models/RoboCup_Goal/model.sdf</uri>
               <name>RoboCup/Net</name>
             </script>
           </material>
@@ -2530,7 +2530,7 @@
           </geometry>
           <material>
             <script>
-              <uri>file:///../models/RoboCup_Goal/model.sdf</uri>
+              <uri>file:///src/altair_simulation/models/RoboCup_Goal/model.sdf</uri>
               <name>RoboCup/Net</name>
             </script>
           </material>
@@ -2573,7 +2573,7 @@
           </geometry>
           <material>
             <script>
-              <uri>file:///../models/RoboCup_Goal/model.sdf</uri>
+              <uri>file:///src/altair_simulation/models/RoboCup_Goal/model.sdf</uri>
               <name>RoboCup/Net</name>
             </script>
           </material>
@@ -3089,7 +3089,7 @@
           </geometry>
           <material>
             <script>
-              <uri>file:///../models/RoboCup_Goal/model.sdf</uri>
+              <uri>file:///src/altair_simulation/models/RoboCup_Goal/model.sdf</uri>
               <name>RoboCup/Net</name>
             </script>
           </material>
@@ -3132,7 +3132,7 @@
           </geometry>
           <material>
             <script>
-              <uri>file:///../models/RoboCup_Goal/model.sdf</uri>
+              <uri>file:///src/altair_simulation/models/RoboCup_Goal/model.sdf</uri>
               <name>RoboCup/Net</name>
             </script>
           </material>
@@ -3175,7 +3175,7 @@
           </geometry>
           <material>
             <script>
-              <uri>file:///../models/RoboCup_Goal/model.sdf</uri>
+              <uri>file:///src/altair_simulation/models/RoboCup_Goal/model.sdf</uri>
               <name>RoboCup/Net</name>
             </script>
           </material>
@@ -3231,7 +3231,7 @@
           <geometry>
             <mesh>
               <scale>0.040000000000000001 0.040000000000000001 0.040000000000000001</scale>
-              <uri>file:///../models/RoboCup_Ball/meshes/ball.dae</uri>
+              <uri>file:///src/altair_simulation/models/RoboCup_Ball/meshes/ball.dae</uri>
             </mesh>
           </geometry>
         </visual>
