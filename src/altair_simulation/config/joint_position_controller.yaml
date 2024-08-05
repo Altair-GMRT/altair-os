@@ -1,0 +1,55 @@
+joint_trajectory_controller:
+  type: "joint_trajectory_controller/JointTrajectoryController"
+  joints:
+    - "l_hip_yaw"
+    - "l_hip_roll"
+    - "l_hip_pitch"
+    - "l_knee"
+    - "l_ank_roll"
+    - "l_ank_pitch"
+    - "r_hip_yaw"
+    - "r_hip_roll"
+    - "r_hip_pitch"
+    - "r_knee"
+    - "r_ank_roll"
+    - "r_ank_pitch"
+    - "l_sho_pitch"
+    - "l_sho_roll"
+    - "l_el"
+    - "r_sho_pitch"
+    - "r_sho_roll"
+    - "r_el"
+    - "head_pan"
+    - "head_tilt"
+  constraints:
+    goal_time: 1.0
+    stopped_velocity_tolerance: 0.05
+    joint1:
+      trajectory: 0.1
+      goal: 0.1
+    joint2:
+      trajectory: 0.1
+      goal: 0.1
+    joint3:
+      trajectory: 0.1
+      goal: 0.1
+  state_publish_rate: 50
+  command_topic: "/joint_trajectory_controller/joint_trajectory"
+  state_topic: "/joint_trajectory_controller/state"
+  action_monitor_rate: 10
+  allow_partial_joints_goal: true
+  topic_name: '/joint_trajectory_controller/trajectory'
+  controller_name: 'joint_trajectory_controller'
+  gains:
+    joint1:
+      p: 100.0
+      i: 0.01
+      d: 1.0
+    joint2:
+      p: 100.0
+      i: 0.01
+      d: 1.0
+    joint3:
+      p: 100.0
+      i: 0.01
+      d: 1.0
