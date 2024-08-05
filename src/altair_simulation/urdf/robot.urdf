@@ -19,6 +19,229 @@
   </plugin>
   <plugin filename="gz-sim-camera-system" name="gz::sim::systems::Camera">
   </plugin>
+  <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+    <topic>gazebo/joint_state</topic>
+    <joint_name>l_hip_yaw</joint_name>
+    <joint_name>l_hip_roll</joint_name>
+    <joint_name>l_hip_pitch</joint_name>
+    <joint_name>l_knee</joint_name>
+    <joint_name>l_ank_roll</joint_name>
+    <joint_name>l_ank_pitch</joint_name>
+    <joint_name>r_hip_yaw</joint_name>
+    <joint_name>r_hip_roll</joint_name>
+    <joint_name>r_hip_pitch</joint_name>
+    <joint_name>r_knee</joint_name>
+    <joint_name>r_ank_roll</joint_name>
+    <joint_name>r_ank_pitch</joint_name>
+    <joint_name>l_sho_pitch</joint_name>
+    <joint_name>l_sho_roll</joint_name>
+    <joint_name>l_el</joint_name>
+    <joint_name>r_sho_pitch</joint_name>
+    <joint_name>r_sho_roll</joint_name>
+    <joint_name>r_el</joint_name>
+    <joint_name>head_pan</joint_name>
+    <joint_name>head_tilt</joint_name>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>l_hip_yaw</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>l_hip_roll</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>l_hip_pitch</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>l_knee</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>l_ank_roll</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>l_ank_pitch</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>r_hip_yaw</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>r_hip_roll</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>r_hip_pitch</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>r_knee</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>r_ank_roll</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>r_ank_pitch</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>l_sho_pitch</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>l_sho_roll</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>l_el</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>r_sho_pitch</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>r_sho_roll</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>r_el</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>head_pan</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
+  <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+    <joint_name>head_tilt</joint_name>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
+    <cmd_max>1000</cmd_max>
+    <cmd_min>-1000</cmd_min>
+  </plugin>
   <!-- body link -->
   <gazebo reference="body_link">
     <mu1>0.2</mu1>
@@ -241,104 +464,89 @@
     </material>
     <selfCollide>false</selfCollide>
   </gazebo>
+  <!-- joint -->
   <!-- <gazebo reference="l_hip_yaw">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+    <p_gain>1</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>0.01</d_gain>
+    <i_max>1</i_max>
+    <i_min>-1</i_min>
   </gazebo>
 
   <gazebo reference="l_hip_roll">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+
   </gazebo>
 
   <gazebo reference="l_hip_pitch">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+
   </gazebo>
 
   <gazebo reference="l_knee">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+
   </gazebo>
 
   <gazebo reference="l_ank_roll">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+
   </gazebo>
 
   <gazebo reference="l_ank_pitch">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+
   </gazebo>
 
   <gazebo reference="r_hip_yaw">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+
   </gazebo>
 
   <gazebo reference="r_hip_roll">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+
   </gazebo>
 
   <gazebo reference="r_hip_pitch">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+
   </gazebo>
 
   <gazebo reference="r_knee">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+
   </gazebo>
 
   <gazebo reference="r_ank_roll">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+
   </gazebo>
 
   <gazebo reference="r_ank_pitch">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+
   </gazebo>
 
   <gazebo reference="r_sho_pitch">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+
   </gazebo>
 
   <gazebo reference="r_sho_roll">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+
   </gazebo>
 
   <gazebo reference="r_el">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+
   </gazebo>
 
   <gazebo reference="l_sho_pitch">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+
   </gazebo>
 
   <gazebo reference="l_sho_roll">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+
   </gazebo>
 
   <gazebo reference="l_el">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+
   </gazebo>
 
   <gazebo reference="head_pan">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+
   </gazebo>
 
   <gazebo reference="head_tilt">
-    <provideFeedback>1</provideFeedback>
-    <implicitSpringDamper>1</implicitSpringDamper>
+
   </gazebo> -->
   <!-- head camera -->
   <gazebo reference="cam_gazebo_link">
@@ -370,11 +578,11 @@
       <update_rate>1</update_rate>
       <visualize>true</visualize>
       <topic>gazebo/imu</topic>
-      <pose>0 0 0 0 0 0</pose>
+      <!-- <pose>0 0 0 0 0 0</pose> -->
     </sensor>
   </gazebo>
-  <!-- <xacro:include filename="$(find op3_description)/urdf/robotis_op3.transmissions.xacro" /> -->
-  <!-- <xacro:include filename="$(find op3_description)/urdf/gazebo_harness.xacro" /> -->
+  <!-- <xacro:include filename="$(find altair_simulation)/urdf/robotis_op3.transmissions.xacro" /> -->
+  <!-- <xacro:include filename="$(find altair_simulation)/urdf/gazebo_harness.xacro" /> -->
   <!-- harness link -->
   <!-- <xacro:add_sim_harness harnessed_link="body_link"/> -->
   <!-- <link name="world">
@@ -397,7 +605,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/body.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/body.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -405,7 +613,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/body.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/body.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -437,7 +645,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/ll1.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/ll1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -446,7 +654,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/ll1.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/ll1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -472,7 +680,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/ll2.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/ll2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -481,7 +689,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/ll2.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/ll2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -507,7 +715,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/ll3.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/ll3.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -516,7 +724,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/ll3.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/ll3.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -542,7 +750,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/ll4.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/ll4.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -551,7 +759,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/ll4.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/ll4.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -577,7 +785,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/ll5.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/ll5.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -586,7 +794,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/ll5.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/ll5.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -612,7 +820,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/ll6.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/ll6.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -621,7 +829,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/ll6.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/ll6.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -647,7 +855,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/rl1.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/rl1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -656,7 +864,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/rl1.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/rl1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -682,7 +890,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/rl2.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/rl2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -691,7 +899,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/rl2.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/rl2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -717,7 +925,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/rl3.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/rl3.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -726,7 +934,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/rl3.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/rl3.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -752,7 +960,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/rl4.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/rl4.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -761,7 +969,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/rl4.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/rl4.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -787,7 +995,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/rl5.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/rl5.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -796,7 +1004,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/rl5.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/rl5.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -822,7 +1030,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/rl6.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/rl6.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -831,7 +1039,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/rl6.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/rl6.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -857,7 +1065,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/la1.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/la1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -866,7 +1074,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/la1.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/la1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -892,7 +1100,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/la2.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/la2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -901,7 +1109,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/la2.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/la2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -927,7 +1135,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/la3.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/la3.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -936,7 +1144,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/la3.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/la3.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -962,7 +1170,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/ra1.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/ra1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -971,7 +1179,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/ra1.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/ra1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -997,7 +1205,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/ra2.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/ra2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -1006,7 +1214,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/ra2.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/ra2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -1032,7 +1240,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/ra3.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/ra3.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -1041,7 +1249,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/ra3.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/ra3.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -1067,7 +1275,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/h1.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/h1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -1076,7 +1284,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/h1.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/h1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -1102,7 +1310,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/h2.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/h2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>
@@ -1111,7 +1319,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/op3_description/share/op3_description/meshes/h2.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:///home/lexciese/Dev/altair_gazebo_simulation/install/altair_simulation/share/altair_simulation/meshes/h2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.60 0.60 0.60 1.0"/>

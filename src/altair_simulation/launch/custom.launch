@@ -1,0 +1,6 @@
+<launch>
+    <gz_server
+        world_sdf_file="empty.sdf"
+        >
+    </gz_server>
+</launch>
